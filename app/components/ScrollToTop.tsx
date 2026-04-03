@@ -16,7 +16,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center rounded-full bg-indigo-900 text-white shadow-lg transition-colors"
+      className="fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center rounded-full bg-indigo-900 text-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
       aria-label="맨 위로"
     >
       ↑
