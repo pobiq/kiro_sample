@@ -8,10 +8,9 @@ export default function Header() {
           <a href="#timeline" className="hover:text-black transition-colors">일정</a>
           <a href="#prizes" className="hover:text-black transition-colors">혜택</a>
           <a href="#judging" className="hover:text-black transition-colors">심사</a>
-          <a href="#" className="hover:text-black transition-colors">FAQ</a>
           <a
             href="#apply"
-            className="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-full text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-indigo-900 hover:bg-indigo-600 text-white rounded-full text-sm font-medium transition-colors"
           >
             참가 신청
           </a>
