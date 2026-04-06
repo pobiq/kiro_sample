@@ -2,9 +2,9 @@ const timeline = [
   { period: "3월 – 4월", label: "준비 및 모집", desc: "참가팀 선발, 대회 일정 안내" },
   { period: "5/15 – 21", label: "사전 기술 교육", desc: "Kiro 환경 세팅, 사전 과제 및 질의응답" },
   { period: "5/22 – 23", label: "KIROTHON 예선", desc: "1박 2일 몰입 개발, 본선 4팀 선발" },
-  { period: "5/24 – 31", label: "프로젝트 고도화", desc: "전문가 멘토링, 앱 품질 향상" },
+  { period: "5/17 – 31", label: "프로젝트 고도화", desc: "전문가 멘토링, 앱 품질 향상" },
   { period: "6/03", label: "경진대회 본선", desc: "최종 서비스 발표 및 우수 2팀 시상" },
-  { period: "7/06 ~", label: "✈️ 일본 글로벌 견학", desc: "도쿄 IT 기업 탐방 3박 4일" },
+  { period: "7/06 ~", label: "일본 글로벌 견학", desc: "도쿄 IT 기업 탐방 3박 4일" },
 ];
 
 export default function Timeline() {
@@ -32,9 +32,9 @@ export default function Timeline() {
             <div className="flex justify-between">
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
-                  <span className="text-indigo-700 font-bold text-sm leading-snug mb-1">{item.label}</span>
-                  <span className="text-gray-700 text-sm mb-1">{item.period}</span>
-                  <span className="text-gray-400 text-xs leading-snug">{item.desc}</span>
+                  <span className="text-indigo-700 font-bold text-lg leading-snug mb-1">{item.label}</span>
+                  <span className="text-gray-700 text-base mb-1">{item.period}</span>
+                  <span className="text-gray-400 text-base leading-snug">{item.desc}</span>
                 </div>
               ))}
             </div>
