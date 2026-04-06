@@ -15,7 +15,7 @@ export default function KiroIntro() {
   ];
 
   return (
-    <section className="bg-black py-20">
+    <section className="bg-[#252525] py-20">
       <div className="max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold mb-6 text-white">
           AWS Kiro란?

@@ -9,7 +9,7 @@ const timeline = [
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="bg-black py-20">
+    <section id="timeline" className="bg-[#252525] py-20">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16 text-white">Schedule</h2>
 

@@ -54,7 +54,7 @@ export default function Judging() {
         <h2 className="text-4xl font-bold mb-6 text-white">진행방식 및 심사기준</h2>
         <button
           onClick={() => setOpen(true)}
-          className="inline-block px-8 py-3.5 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-colors duration-200"
+          className="inline-block px-8 py-3.5 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-colors cursor-pointer duration-200"
         >
           진행방식 및 심사기준 보기
         </button>
