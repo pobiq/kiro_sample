@@ -7,10 +7,7 @@ import Timeline from "./components/Timeline";
 import Prizes from "./components/Prizes";
 import Judging from "./components/Judging";
 import KiroIntro from "./components/KiroIntro";
-import DetailedSchedule from "./components/DetailedSchedule";
-import PreEducation from "./components/PreEducation";
 import FAQ from "./components/FAQ";
-import ApplyForm from "./components/ApplyForm";
 
 export default function Home() {
   return (
@@ -20,12 +17,9 @@ export default function Home() {
       <KiroIntro />
       <Strategies />
       <Timeline />
-      <DetailedSchedule />
-      <PreEducation />
       <Prizes />
       <Judging />
       <FAQ />
-      <ApplyForm />
       <Footer />
       <ScrollToTop />
     </main>
