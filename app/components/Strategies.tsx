@@ -21,20 +21,20 @@ const strategies = [
 
 export default function Strategies() {
   return (
-    <section id="about" className="bg-gray-50 py-20">
+    <section id="about" className="bg-black py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16">대회 소개</h2>
+        <h2 className="text-4xl font-bold text-center mb-16 text-white">대회 소개</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {strategies.map((item) => (
             <div
               key={item.num}
-              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              className="bg-white/5 rounded-2xl p-8 border border-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex flex-row items-center">
                 <div className="text-3xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-lg mb-3">{item.title}</h3>
+                <h3 className="font-bold text-lg mb-3 text-white">{item.title}</h3>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

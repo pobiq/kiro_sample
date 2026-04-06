@@ -15,20 +15,20 @@ export default function KiroIntro() {
   ];
 
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-black py-20">
       <div className="max-w-5xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">
+        <h2 className="text-4xl font-bold mb-6 text-white">
           AWS Kiro란?
         </h2>
-        <p className="text-gray-500 mb-12">
+        <p className="text-gray-400 mb-12">
           코딩 없이 아이디어만으로 실제 서비스를 만드는 AI 개발 플랫폼
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
           {features.map((f) => (
-            <div key={f.title} className="bg-white p-6 rounded-xl border">
-              <h3 className="font-bold mb-2">{f.title}</h3>
-              <p className="text-sm text-gray-500">{f.desc}</p>
+            <div key={f.title} className="bg-white/5 p-6 rounded-xl border border-white/10">
+              <h3 className="font-bold mb-2 text-white">{f.title}</h3>
+              <p className="text-sm text-gray-400">{f.desc}</p>
             </div>
           ))}
         </div>

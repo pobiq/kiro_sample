@@ -7,17 +7,17 @@ const prizes = [
 
 export default function Prizes() {
   return (
-    <section id="prizes" className="bg-white text-gray-900 py-24">
+    <section id="prizes" className="bg-black text-white py-24">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-5xl font-extrabold mb-6">Award</h2>
-        <p className="text-2xl font-bold text-gray-900 mb-3">총 상금 260만원</p>
-        <p className="text-gray-500 text-sm mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
-        <p className="text-gray-400 text-sm mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
+        <p className="text-2xl font-bold text-white mb-3">총 상금 260만원</p>
+        <p className="text-gray-400 text-sm mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
+        <p className="text-gray-500 text-sm mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {prizes.map((prize) => (
             <div key={prize.rank} className="flex flex-col items-center">
-              <span className="text-black-300 text-xl font-bold mb-3">{prize.rank}</span>
+              <span className="text-gray-300 text-xl font-bold mb-3">{prize.rank}</span>
               <div className="w-full rounded-lg overflow-hidden shadow-lg">
                 {/* 그라디언트 상단 바 */}
                 <div className="h-2 bg-gradient-to-r from-indigo-500 to-amber-300" />
@@ -31,7 +31,7 @@ export default function Prizes() {
         </div>
 
         {/* 일본 견학 */}
-        <div className="mt-14 border border-gray-200 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-5 text-left">
+        <div className="mt-14 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-5 text-left">
           <div className="text-5xl">✈️</div>
           <div>
             <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">부상 · 대상 + 최우수상 2팀 (최대 10명)</div>

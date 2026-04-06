@@ -49,12 +49,12 @@ export default function Judging() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="judging" className="bg-white py-20">
+    <section id="judging" className="bg-black py-20">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">진행방식 및 심사기준</h2>
+        <h2 className="text-4xl font-bold mb-6 text-white">진행방식 및 심사기준</h2>
         <button
           onClick={() => setOpen(true)}
-          className="inline-block px-8 py-3.5 border-2 border-gray-800 text-gray-800 font-bold rounded-lg hover:bg-gray-800 cursor: pointer hover:text-white transition-colors duration-200"
+          className="inline-block px-8 py-3.5 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-colors duration-200"
         >
           진행방식 및 심사기준 보기
         </button>
