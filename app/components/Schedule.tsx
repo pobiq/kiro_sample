@@ -7,7 +7,7 @@ const timeline = [
   { period: "7/06 ~", label: "일본 글로벌 견학", desc: "도쿄 IT 기업 탐방 3박 4일" },
 ];
 
-export default function Timeline() {
+export default function Schedule() {
   return (
     <section id="timeline" className="bg-[#252525] py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -17,7 +17,7 @@ export default function Timeline() {
         <div className="hidden md:block overflow-x-auto">
           <div className="relative min-w-[700px]">
             {/* 연결선 */}
-            <div className="absolute top-[9px] left-[calc(100%/12)] right-[calc(100%/12)] h-0.5 bg-white/20" />
+            <div className="absolute top-[9px] left-[calc(100%/12)] right-[calc(100%/12)] h-0.5 bg-indigo-700" />
 
             {/* 마커 행 */}
             <div className="relative flex justify-between mb-5">
@@ -34,7 +34,7 @@ export default function Timeline() {
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
                   <span className="text-indigo-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
                   <span className="text-gray-300 text-base mb-1">{item.period}</span>
-                  <span className="text-gray-500 text-base leading-snug">{item.desc}</span>
+                  <span className="text-white text-base leading-snug">{item.desc}</span>
                 </div>
               ))}
             </div>

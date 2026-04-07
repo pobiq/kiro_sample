@@ -19,7 +19,7 @@ const strategies = [
   },
 ];
 
-export default function Strategies() {
+export default function Introduce() {
   return (
     <section id="about" className="bg-[#252525] py-20">
       <div className="max-w-6xl mx-auto px-6">
