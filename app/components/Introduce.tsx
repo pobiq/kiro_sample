@@ -34,7 +34,7 @@ export default function Introduce() {
                 <div className="text-3xl mb-4">{item.icon}</div>
                 <h3 className="font-bold text-lg mb-3 text-white">{item.title}</h3>
               </div>
-              <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
+              <p className="text-sm text-[#999] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -11,19 +11,19 @@ export default function Award() {
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-5xl font-extrabold mb-6">Award</h2>
         <p className="text-2xl font-bold text-white mb-3">총 상금 260만원</p>
-        <p className="text-gray-400 text-sm mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
-        <p className="text-gray-500 text-sm mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
+        <p className="text-white text-xl mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
+        <p className="text-[#999] text-xl mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {prizes.map((prize) => (
             <div key={prize.rank} className="flex flex-col items-center">
-              <span className="text-gray-300 text-xl font-bold mb-3">{prize.rank}</span>
+              <span className="text-white text-xl font-bold mb-3">{prize.rank}</span>
               <div className="w-full rounded-lg overflow-hidden shadow-lg">
                 {/* 그라디언트 상단 바 */}
-                <div className="h-2 bg-gradient-to-r from-indigo-500 to-amber-300" />
+                <div className="h-2 bg-gradient-to-r bg-gradient-to-r from-amber-300 via-pink-500 to-indigo-500" />
                 <div className="bg-white text-gray-900 py-6 px-4 text-center">
                   <span className="text-4xl font-extrabold">{prize.amount}</span>
-                  <span className="text-lg font-bold">{prize.unit}</span>
+                  <span className="text-2xl font-bold">{prize.unit}</span>
                 </div>
               </div>
             </div>

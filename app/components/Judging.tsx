@@ -74,7 +74,7 @@ export default function Judging() {
               <h3 className="text-xl font-extrabold text-white">진행방식 및 심사기준</h3>
               <button
                 onClick={() => setOpen(false)}
-                className="text-white/80 hover:text-white text-2xl leading-none"
+                className="text-white/80 hover:text-white text-2xl leading-none cursor:pointer"
               >
                 ✕
               </button>
@@ -90,10 +90,10 @@ export default function Judging() {
                   </div>
                   {/* 내용 */}
                   <div className="flex-1">
-                    <p className="font-bold text-gray-900 mb-2">{section.title}</p>
+                    <p className="font-bold text-[#999] mb-2">{section.title}</p>
                     <ul className="space-y-1">
                       {section.items.map((item, i) => (
-                        <li key={i} className="text-sm text-gray-600">- {item}</li>
+                        <li key={i} className="text-sm text-[#999]">- {item}</li>
                       ))}
                     </ul>
                   </div>

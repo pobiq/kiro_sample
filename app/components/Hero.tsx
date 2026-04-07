@@ -11,16 +11,13 @@ export default function Hero() {
       <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-amber-500/10 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-6 py-32 text-center">
-        <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-300 text-xs font-medium tracking-widest uppercase">
-          KIROTHON
-        </div>
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
           원주 대학 연합<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-amber-400">
             AI·클라우드 경진대회
           </span>
         </h1>
-        <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+        <p className="text-[#999] text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
           어려운 코딩 없이, 대화하듯 아이디어를 실현하는<br />
           <span className="text-indigo-300 font-medium">AWS Kiro 기반 &apos;AI 자동 개발&apos; 해커톤</span>
         </p>
@@ -43,7 +40,7 @@ export default function Hero() {
           {heroStats.map((stat) => (
             <div key={stat.label} className="border-t border-white/10 pt-6">
               <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
+              <div className="text-xs text-[#999] mt-1">{stat.label}</div>
             </div>
           ))}
         </div>

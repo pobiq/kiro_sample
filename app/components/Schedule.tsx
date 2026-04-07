@@ -1,10 +1,10 @@
 const timeline = [
   { period: "3월 – 4월", label: "준비 및 모집", desc: "참가팀 선발, 대회 일정 안내" },
-  { period: "5/15 – 21", label: "사전 기술 교육", desc: "Kiro 환경 세팅, 사전 과제 및 질의응답" },
-  { period: "5/22 – 23", label: "KIROTHON 예선", desc: "1박 2일 몰입 개발, 본선 4팀 선발" },
-  { period: "5/17 – 31", label: "프로젝트 고도화", desc: "전문가 멘토링, 앱 품질 향상" },
-  { period: "6/03", label: "경진대회 본선", desc: "최종 서비스 발표 및 우수 2팀 시상" },
-  { period: "7/06 ~", label: "일본 글로벌 견학", desc: "도쿄 IT 기업 탐방 3박 4일" },
+  { period: "5/15(금) – 21(목)", label: "사전 기술 교육", desc: "Kiro 환경 세팅, 사전 과제 및 질의응답" },
+  { period: "5/22(금) – 23(토)", label: "KIROTHON 예선", desc: "1박 2일 몰입 개발, 본선 4팀 선발" },
+  { period: "5/17(일) – 31(일)", label: "프로젝트 고도화", desc: "전문가 멘토링, 앱 품질 향상" },
+  { period: "6/03(수)", label: "경진대회 본선", desc: "최종 서비스 발표 및 우수 2팀 시상" },
+  { period: "7/06(월) –", label: "일본 글로벌 견학", desc: "도쿄 IT 기업 탐방 3박 4일" },
 ];
 
 export default function Schedule() {
@@ -33,8 +33,8 @@ export default function Schedule() {
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
                   <span className="text-indigo-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
-                  <span className="text-gray-300 text-base mb-1">{item.period}</span>
-                  <span className="text-white text-base leading-snug">{item.desc}</span>
+                  <span className="text-white text-base mb-1">{item.period}</span>
+                  <span className="text-[#999] text-base leading-snug">{item.desc}</span>
                 </div>
               ))}
             </div>
@@ -51,8 +51,8 @@ export default function Schedule() {
               </div>
               <div className="pb-8">
                 <span className="text-indigo-400 font-bold text-sm">{item.label}</span>
-                <p className="text-gray-300 text-sm">{item.period}</p>
-                <p className="text-gray-500 text-xs mt-0.5">{item.desc}</p>
+                <p className="text-[#999] text-sm">{item.period}</p>
+                <p className="text-[#999] text-xs mt-0.5">{item.desc}</p>
               </div>
             </div>
           ))}

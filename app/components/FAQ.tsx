@@ -21,7 +21,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-black py-20">
+    <section id="FAQ" className="bg-black py-20">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12 text-white">FAQ</h2>
 
@@ -39,7 +39,7 @@ export default function FAQ() {
                 </span>
               </div>
               {open === i && (
-                <div className="text-sm text-gray-400 mt-3 pt-3 border-t border-white/10">{f.a}</div>
+                <div className="text-sm text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
               )}
             </div>
           ))}

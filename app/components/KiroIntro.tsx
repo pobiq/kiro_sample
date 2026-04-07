@@ -20,15 +20,15 @@ export default function KiroIntro() {
         <h2 className="text-4xl font-bold mb-6 text-white">
           AWS Kiro란?
         </h2>
-        <p className="text-gray-400 mb-12">
+        <p className="text-[#999] mb-12">
           코딩 없이 아이디어만으로 실제 서비스를 만드는 AI 개발 플랫폼
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
           {features.map((f) => (
-            <div key={f.title} className="bg-white/5 p-6 rounded-xl border border-white/10">
+            <div key={f.title} className="bg-white/5 rounded-2xl p-8 border border-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-200">
               <h3 className="font-bold mb-2 text-white">{f.title}</h3>
-              <p className="text-sm text-gray-400">{f.desc}</p>
+              <p className="text-sm text-[#999]">{f.desc}</p>
             </div>
           ))}
         </div>
