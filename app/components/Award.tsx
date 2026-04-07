@@ -20,7 +20,7 @@ export default function Award() {
               <span className="text-white text-xl font-bold mb-3">{prize.rank}</span>
               <div className="w-full rounded-lg overflow-hidden shadow-lg">
                 {/* 그라디언트 상단 바 */}
-                <div className="h-2 bg-gradient-to-r bg-gradient-to-r from-amber-300 via-pink-500 to-indigo-500" />
+                <div className="h-2 bg-gradient-to-r bg-gradient-to-r from-amber-300 via-pink-500 to-purple-500" />
                 <div className="bg-white text-gray-900 py-6 px-4 text-center">
                   <span className="text-4xl font-extrabold">{prize.amount}</span>
                   <span className="text-2xl font-bold">{prize.unit}</span>
@@ -34,9 +34,9 @@ export default function Award() {
         <div className="mt-14 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-5 text-left">
           <div className="text-5xl">✈️</div>
           <div>
-            <div className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-1">부상 · 대상 + 최우수상 2팀 (최대 10명)</div>
-            <p className="text-lg font-extrabold mb-1">일본 도쿄 글로벌 IT 견학 (3박 4일)</p>
-            <p className="text-sm leading-relaxed">
+            <div className="text-amber-400 font-bold uppercase tracking-widest mb-1">부상 · 대상 + 최우수상 2팀 (최대 10명)</div>
+            <p className="text-2xl font-extrabold mb-1">일본 도쿄 글로벌 IT 견학 (3박 4일)</p>
+            <p className="leading-relaxed">
               AWS Japan 등 글로벌 클라우드 기업 심층 투어 · 현지 엔지니어 멘토링 · CIC Tokyo 스타트업 허브 방문<br />
               항공·숙박·식사·현지 교통 <span className="text-amber-400 font-semibold">전액 지원</span>
             </p>

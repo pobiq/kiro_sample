@@ -56,7 +56,7 @@ export default function ApplyForm() {
             onChange={(e) => setForm({ ...form, idea: e.target.value })}
           />
 
-          <button className="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold">
+          <button className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold">
             제출하기
           </button>
         </form>

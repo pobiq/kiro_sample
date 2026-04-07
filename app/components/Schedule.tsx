@@ -17,13 +17,13 @@ export default function Schedule() {
         <div className="hidden md:block overflow-x-auto">
           <div className="relative min-w-[700px]">
             {/* 연결선 */}
-            <div className="absolute top-[9px] left-[calc(100%/12)] right-[calc(100%/12)] h-0.5 bg-indigo-700" />
+            <div className="absolute top-[9px] left-[calc(100%/12)] right-[calc(100%/12)] h-0.5 bg-purple-500" />
 
             {/* 마커 행 */}
             <div className="relative flex justify-between mb-5">
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center" style={{ width: `${100 / timeline.length}%` }}>
-                  <div className="w-[18px] h-[18px] bg-indigo-700" />
+                  <div className="w-[18px] h-[18px] bg-purple-500" />
                 </div>
               ))}
             </div>
@@ -32,7 +32,7 @@ export default function Schedule() {
             <div className="flex justify-between">
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
-                  <span className="text-indigo-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
+                  <span className="text-purple-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
                   <span className="text-white text-base mb-1">{item.period}</span>
                   <span className="text-[#999] text-base leading-snug">{item.desc}</span>
                 </div>
@@ -46,11 +46,11 @@ export default function Schedule() {
           {timeline.map((item, i) => (
             <div key={item.label} className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 bg-indigo-700 rotate-45 shrink-0 mt-1" />
+                <div className="w-3 h-3 bg-purple-400 rotate-45 shrink-0 mt-1" />
                 {i < timeline.length - 1 && <div className="w-0.5 flex-1 bg-white/20 my-1" />}
               </div>
               <div className="pb-8">
-                <span className="text-indigo-400 font-bold text-sm">{item.label}</span>
+                <span className="text-purple-400 font-bold text-sm">{item.label}</span>
                 <p className="text-[#999] text-sm">{item.period}</p>
                 <p className="text-[#999] text-xs mt-0.5">{item.desc}</p>
               </div>

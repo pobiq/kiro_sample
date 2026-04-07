@@ -33,13 +33,13 @@ export default function FAQ() {
               onClick={() => setOpen(open === i ? null : i)}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-white">{f.q}</span>
+                <span className="font-semibold text-white text-xl">Q. {f.q}</span>
                 <span className={`text-white text-base transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </div>
               {open === i && (
-                <div className="text-sm text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
+                <div className="text-xl text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
               )}
             </div>
           ))}

@@ -32,9 +32,9 @@ export default function Introduce() {
             >
               <div className="flex flex-row items-center">
                 <div className="text-3xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-lg mb-3 text-white">{item.title}</h3>
+                <h3 className="font-bold text-xl mb-3 text-white">{item.title}</h3>
               </div>
-              <p className="text-sm text-[#999] leading-relaxed">{item.desc}</p>
+              <p className="text-[#999] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
