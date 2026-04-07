@@ -5,7 +5,7 @@ const prizes = [
   { rank: "장려상", amount: "30", unit: "만원" },
 ];
 
-export default function Prizes() {
+export default function Award() {
   return (
     <section id="prizes" className="bg-black text-white py-24">
       <div className="max-w-4xl mx-auto px-6 text-center">
