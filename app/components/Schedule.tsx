@@ -33,8 +33,8 @@ export default function Schedule() {
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
                   <span className="text-purple-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
-                  <span className="text-white text-base mb-1">{item.period}</span>
-                  <span className="text-[#999] text-base leading-snug">{item.desc}</span>
+                  <span className="text-white mb-1">{item.period}</span>
+                  <span className="text-[#999] leading-snug">{item.desc}</span>
                 </div>
               ))}
             </div>

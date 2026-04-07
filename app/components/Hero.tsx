@@ -40,7 +40,7 @@ export default function Hero() {
           {heroStats.map((stat) => (
             <div key={stat.label} className="border-t border-white/10 pt-6">
               <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-base text-[#999] mt-1">{stat.label}</div>
+              <div className="text-[#999] mt-1">{stat.label}</div>
             </div>
           ))}
         </div>

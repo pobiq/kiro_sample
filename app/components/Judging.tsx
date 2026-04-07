@@ -65,10 +65,10 @@ const modalSections: Section[] = [
 ];
 
 const judgingCards = [
-  { pct: "30%", title: "Prompt / Spec Quality", desc: "KIRO를 논리적으로 가이드하여 완성도 높은 명세를 뽑아내었는가?", color: "border-purple-500" },
-  { pct: "30%", title: "Agentic Thinking", desc: "스스로 과업을 수행하는 Agent 성격이 서비스에 묻어나는가?", color: "border-purple-500" },
-  { pct: "20%", title: "Campus Impact", desc: "대학 생활의 문제를 얼마나 창의적이고 실용적으로 해결했는가?", color: "border-purple-500" },
-  { pct: "20%", title: "Completeness", desc: "실제 인프라에 배포 및 동작 가능한 수준으로 완성했는가?", color: "border-purple-500" },
+  { pct: "30%", title: "Prompt / Spec Quality", desc: "KIRO를 논리적으로 가이드하여 완성도 높은 명세를 뽑아내었는가?", color: "border-purple-500", bg: "bg-purple-50" },
+  { pct: "30%", title: "Agentic Thinking", desc: "스스로 과업을 수행하는 Agent 성격이 서비스에 묻어나는가?", color: "border-blue-500", bg: "bg-blue-50" },
+  { pct: "20%", title: "Campus Impact", desc: "대학 생활의 문제를 얼마나 창의적이고 실용적으로 해결했는가?", color: "border-emerald-500", bg: "bg-emerald-50" },
+  { pct: "20%", title: "Completeness", desc: "실제 인프라에 배포 및 동작 가능한 수준으로 완성했는가?", color: "border-orange-500", bg: "bg-orange-50" },
 ];
 
 
@@ -118,7 +118,7 @@ export default function Judging() {
                     </span>
                     <div>
                       <p className="font-extrabold text-gray-900 leading-tight">{section.title}</p>
-                      <p className="text-xs text-[#999]">{section.sub}</p>
+                      <p className="text-sm text-[#999]">{section.sub}</p>
                     </div>
                   </div>
 
@@ -127,12 +127,12 @@ export default function Judging() {
                     <div className="space-y-2">
                       {(section.items as TimelineItem[]).map((item, i) => (
                         <div key={i} className="flex gap-3 items-start">
-                          <span className="text-xs font-mono font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded whitespace-nowrap shrink-0 mt-0.5">
+                          <span className="text-sm font-mono font-bold text-purple-600 px-2 rounded whitespace-nowrap shrink-0 mt-1 w-32 inline-block">
                             {item.time}
                           </span>
                           <div>
                             <span className="text-sm font-semibold text-gray-800">{item.session}</span>
-                            <p className="text-xs text-[#999] leading-relaxed">{item.desc}</p>
+                            <p className="text-sm text-[#999] leading-relaxed">{item.desc}</p>
                           </div>
                         </div>
                       ))}
@@ -159,19 +159,19 @@ export default function Judging() {
               {/* 심사 기준 카드 2x2 */}
               <div className="py-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-500 text-white text-sm font-extrabold flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-gray-500 text-white text-sm font-extrabold flex items-center justify-center shrink-0">
                     !
                   </div>
                   <p className="font-bold text-black">심사 기준</p>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {judgingCards.map((card) => (
-                    <div key={card.title} className={`rounded-xl p-4 border-l-4 ${card.color} bg-gray-50`}>
+                    <div key={card.title} className={`rounded-xl p-4 border-l-4 ${card.color} ${card.bg}`}>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-lg font-extrabold text-gray-900">{card.pct}</span>
-                        <span className="text-sm font-bold text-gray-800">{card.title}</span>
+                        <span className="font-bold text-gray-800">{card.title}</span>
                       </div>
-                      <p className="text-xs text-[#999] leading-relaxed">{card.desc}</p>
+                      <p className="text-sm text-[#999] leading-relaxed">{card.desc}</p>
                     </div>
                   ))}
                 </div>

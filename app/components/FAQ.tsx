@@ -4,9 +4,8 @@ import { useState } from "react";
 
 export default function FAQ() {
   const faqs = [
-    {
-      q: "개인 참가 가능한가요?",
-      a: "네, 가능합니다. 개인 참가자는 팀 매칭을 지원합니다.",
+    { q: "개인도 참여 가능한가요?",
+      a: "네 개인도 참여 가능합니다."
     },
     {
       q: "개발 경험이 없어도 되나요?",
@@ -33,13 +32,13 @@ export default function FAQ() {
               onClick={() => setOpen(open === i ? null : i)}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-white text-xl">Q. {f.q}</span>
+                <span className="font-semibold text-white text-lg">Q. {f.q}</span>
                 <span className={`text-white text-base transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </div>
               {open === i && (
-                <div className="text-xl text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
+                <div className="text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
               )}
             </div>
           ))}
