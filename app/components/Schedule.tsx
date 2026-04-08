@@ -9,9 +9,9 @@ const timeline = [
 
 export default function Schedule() {
   return (
-    <section className="bg-[#252525] py-20">
+    <section className="bg-white py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">전체 추진 일정</h2>
+        <h2 className="text-4xl font-bold text-center mb-16 text-black">전체 추진 일정</h2>
 
         {/* 데스크탑: 가로 타임라인 */}
         <div className="hidden md:block overflow-x-auto">
@@ -33,7 +33,7 @@ export default function Schedule() {
               {timeline.map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center px-2" style={{ width: `${100 / timeline.length}%` }}>
                   <span className="text-purple-400 font-bold text-lg leading-snug mb-1">{item.label}</span>
-                  <span className="text-white mb-1">{item.period}</span>
+                  <span className="text-black mb-1">{item.period}</span>
                   <span className="text-[#999] leading-snug">{item.desc}</span>
                 </div>
               ))}
@@ -47,7 +47,7 @@ export default function Schedule() {
             <div key={item.label} className="flex gap-4">
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 bg-purple-400 rotate-45 shrink-0 mt-1" />
-                {i < timeline.length - 1 && <div className="w-0.5 flex-1 bg-white/20 my-1" />}
+                {i < timeline.length - 1 && <div className="w-0.5 flex-1 bg-black/20 my-1" />}
               </div>
               <div className="pb-8">
                 <span className="text-purple-400 font-bold text-sm">{item.label}</span>

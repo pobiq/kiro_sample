@@ -20,25 +20,30 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-black py-20">
+    <section id="faq" className="bg-white py-20">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 text-white">FAQ</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-black">FAQ</h2>
 
         <div className="space-y-4">
           {faqs.map((f, i) => (
             <div
               key={i}
-              className="border border-white/10 rounded-xl p-5 cursor-pointer hover:border-white/20 transition-colors"
+              className="bg-[#EBF2FA] rounded-xl px-6 py-5 cursor-pointer hover:bg-[#dce9f5] transition-colors"
               onClick={() => setOpen(open === i ? null : i)}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-white text-lg">Q. {f.q}</span>
-                <span className={`text-white text-base transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-[#1A56DB] text-white text-sm font-bold flex items-center justify-center shrink-0">
+                    Q
+                  </span>
+                  <span className="font-semibold text-black text-base">{f.q}</span>
+                </div>
+                <span className={`text-gray-500 text-sm transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </div>
               {open === i && (
-                <div className="text-[#999] mt-3 pt-3 border-t border-white/10">{f.a}</div>
+                <div className="text-[#555] mt-4 pl-11">{f.a}</div>
               )}
             </div>
           ))}

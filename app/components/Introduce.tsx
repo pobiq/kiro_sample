@@ -38,7 +38,7 @@ const strategies = [
 
 export default function Introduce() {
   return (
-    <section id="about" className="bg-[#252525] py-20">
+    <section id="about" className="bg-[#F3F6F9] py-20">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16 text-white">대회 소개</h2>
         <div className="grid md:grid-cols-3 gap-6">
