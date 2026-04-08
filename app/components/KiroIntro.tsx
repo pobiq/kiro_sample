@@ -26,7 +26,7 @@ const roles = [
 
 export default function KiroIntro() {
   return (
-    <section className="bg-[#252525] py-20">
+    <section id="kiro-intro" className="bg-[#252525] py-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* 헤더 */}
         <div className="flex items-center justify-center gap-3 mb-4">

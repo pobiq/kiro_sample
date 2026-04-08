@@ -1,7 +1,7 @@
 const heroStats = [
   { value: "260만원", label: "총 상금" },
   { value: "3월 ~ 7월", label: "운영 기간" },
-  { value: "도쿄 연수", label: "최종 2팀 부상" },
+  { value: "도쿄 연수", label: "최종 2팀" },
 ];
 
 export default function Hero() {
@@ -27,12 +27,6 @@ export default function Hero() {
             className="px-8 py-3.5 bg-purple-900 hover:bg-purple-500 rounded-full font-semibold transition-colors text-sm"
           >
             지금 신청하기
-          </a>
-          <a
-            href="#about"
-            className="px-8 py-3.5 border border-white/20 hover:border-white/50 rounded-full font-semibold transition-colors text-sm"
-          >
-            자세히 보기
           </a>
         </div>
 

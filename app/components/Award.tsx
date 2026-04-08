@@ -9,8 +9,7 @@ export default function Award() {
   return (
     <section id="prizes" className="bg-black text-white py-24">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-5xl font-extrabold mb-6">Award</h2>
-        <p className="text-2xl font-bold text-white mb-3">총 상금 260만원</p>
+        <p className="text-4xl font-bold text-white mb-3">총 상금 260만원</p>
         <p className="text-white text-xl mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
         <p className="text-[#999] text-xl mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
 

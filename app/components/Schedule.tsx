@@ -9,9 +9,9 @@ const timeline = [
 
 export default function Schedule() {
   return (
-    <section id="timeline" className="bg-[#252525] py-20">
+    <section className="bg-[#252525] py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">Schedule</h2>
+        <h2 className="text-4xl font-bold text-center mb-16 text-white">전체 추진 일정</h2>
 
         {/* 데스크탑: 가로 타임라인 */}
         <div className="hidden md:block overflow-x-auto">

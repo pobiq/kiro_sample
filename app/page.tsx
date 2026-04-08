@@ -5,7 +5,6 @@ import Hero from "./components/Hero";
 import Introduce from "./components/Introduce";
 import Schedule from "./components/Schedule";
 import Award from "./components/Award";
-import Judging from "./components/Judging";
 import KiroIntro from "./components/KiroIntro";
 import FAQ from "./components/FAQ";
 
@@ -18,7 +17,6 @@ export default function Home() {
       <Introduce />
       <Schedule />
       <Award />
-      <Judging />
       <FAQ />
       <Footer />
       <ScrollToTop />

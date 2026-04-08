@@ -20,7 +20,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="FAQ" className="bg-black py-20">
+    <section id="faq" className="bg-black py-20">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12 text-white">FAQ</h2>
 
