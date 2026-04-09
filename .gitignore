@@ -43,3 +43,6 @@ next-env.d.ts
 # md files
 AGENTS.md
 CLAUDE.md
+
+# pdf files
+hackathon_contest.pdf

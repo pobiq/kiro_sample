@@ -11,7 +11,7 @@ export default function Award() {
       <div className="max-w-4xl mx-auto px-6 text-center">
         <p className="text-4xl font-bold text-black mb-3">총 상금 260만원</p>
         <p className="text-black text-xl mb-2">대회 종료 후 본선 진출 4팀 상금 지급</p>
-        <p className="text-[#666] text-xl mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
+        <p className="text-[#999] text-xl mb-14">대상 + 최우수상 최종 2팀 — 일본 도쿄 글로벌 IT 견학 (3박 4일) 전액 지원</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {prizes.map((prize) => (

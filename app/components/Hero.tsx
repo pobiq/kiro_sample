@@ -1,16 +1,10 @@
-const heroStats = [
-  { value: "260만원", label: "총 상금" },
-  { value: "3월 ~ 7월", label: "운영 기간" },
-  { value: "도쿄 연수", label: "최종 2팀" },
-];
-
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0d0d14] text-white">
       <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-violet-900/30 blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-amber-500/10 blur-[100px] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 py-32 text-center">
+      <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
           원주 대학 연합<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-400">
@@ -24,19 +18,10 @@ export default function Hero() {
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href="#apply"
-            className="px-8 py-3.5 bg-purple-900 hover:bg-purple-500 rounded-full font-semibold transition-colors text-sm"
+            className="px-8 py-3.5 bg-purple-900 hover:bg-purple-500 rounded-xl font-semibold transition-colors text-sm"
           >
             지금 신청하기
           </a>
-        </div>
-
-        <div className="mt-20 grid grid-cols-3 gap-6 max-w-lg mx-auto text-center">
-          {heroStats.map((stat) => (
-            <div key={stat.label} className="border-t border-white/10 pt-6">
-              <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-[#999] mt-1">{stat.label}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
