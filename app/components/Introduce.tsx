@@ -39,19 +39,19 @@ const strategies = [
 export default function Introduce() {
   return (
     <section id="about" className="bg-white py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16 text-black">대회 소개</h2>
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-12 text-black">대회 소개</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {strategies.map((item) => (
             <div
               key={item.num}
-              className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-gray-300 hover:-translate-y-1 transition-all duration-200"
+              className="bg-gray-50 rounded-2xl p-5 border border-gray-200 hover:border-gray-300 hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex flex-row items-center gap-3">
                 <div className="mb-4 flex">{item.icon}</div>
-                <h3 className="font-bold text-xl mb-3 text-black">{item.title}</h3>
+                <h3 className="font-bold text-lg mb-3 text-black">{item.title}</h3>
               </div>
-              <p className="text-[#999] leading-relaxed">{item.desc}</p>
+              <p className="text-[#777A83] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

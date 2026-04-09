@@ -11,7 +11,7 @@ export default function Hero() {
             AI·클라우드 경진대회
           </span>
         </h1>
-        <p className="text-[#999] text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+        <p className="text-[#777A83] text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
           어려운 코딩 없이, 대화하듯 아이디어를 실현하는<br />
           <span className="text-purple-300 font-medium">AWS Kiro 기반 &apos;AI 자동 개발&apos; 해커톤</span>
         </p>

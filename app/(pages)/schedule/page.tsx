@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 
 type TimelineItem = { time: string; session: string; desc: string };
-type BulletItem = { icon: string; session: string; desc: string };
+type BulletItem = { icon: React.ReactNode; session: string; desc: string };
 type PhaseItem = { badge: string; title: string; sub: string; items: string[] };
 type Section =
   | { type: "phases"; num: string; badge: string; title: string; sub: string; phases: PhaseItem[] }
@@ -16,7 +16,7 @@ const sections: Section[] = [
   {
     type: "phases",
     num: "1",
-    badge: "사전교육",
+    badge: "대회 7일 전",
     title: "사전 기술 교육",
     sub: "대회 1주일 전 온라인 사전 교육",
     phases: [
@@ -58,14 +58,14 @@ const sections: Section[] = [
   {
     type: "timeline",
     num: "2",
-    badge: "예선",
+    badge: "5/22(금) – 5/23(토)",
     title: "KIROTHON 예선",
-    sub: "5/15(금) – 5/16(토) · 1박 2일 몰입 개발",
+    sub: "5/22(금) – 5/23(토) · 1박 2일 몰입 개발",
     days: [
       {
         badge: "DAY 1",
         title: "예선 1일차",
-        sub: "5/15 (금) · 기획 및 AI 협업 개발",
+        sub: "5/22 (금) · 기획 및 AI 협업 개발",
         items: [
           { time: "10:00–10:30", session: "Check-in & Setup", desc: "참가자 등록 및 AWS Kiro IDE 설치/환경 세팅 확인" },
           { time: "10:30–12:30", session: "KIRO Master Class", desc: "[특강] KIRO로 30분 만에 MVP 뽑아내기 실습" },
@@ -78,7 +78,7 @@ const sections: Section[] = [
       {
         badge: "DAY 2",
         title: "예선 2일차",
-        sub: "5/16 (토) · 자동화 배포 및 Kiro Demo Show",
+        sub: "5/23 (토) · 자동화 배포 및 Kiro Demo Show",
         items: [
           { time: "09:00–13:00", session: "Debugging & Deployment", desc: "KIRO Hooks 자동 테스트 및 오류 수정, 최종 배포" },
           { time: "13:00–16:00", session: "발표 준비 (중식 포함)", desc: "최종 시연 점검 및 데모 피치 자료 준비" },
@@ -91,21 +91,42 @@ const sections: Section[] = [
   {
     type: "bullet",
     num: "3",
-    badge: "5/17–31",
+    badge: "5/24(일)–6/7(일)",
     title: "프로젝트 고도화",
-    sub: "본선 진출 4팀 2주 밀착 멘토링",
+    sub: "5/24(일) - 6/7(일)",
     items: [
-      { icon: "🤖", session: "AI 활용 비법 전수", desc: "AI에게 더 정확한 답변을 끌어내는 방법을 프롬프트 엔지니어가 원격 지도" },
-      { icon: "🎨", session: "서비스 퀄리티 향상", desc: "부족했던 화면(UI)을 다듬고 핵심 기능 추가 구현" },
-      { icon: "📄", session: "실전 스펙 완성", desc: "이력서(포트폴리오)에 바로 쓸 수 있는 완벽한 서비스로 발전" },
+      {
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
+          </svg>
+        ),
+        session: "AI 활용 비법 전수", desc: "AI에게 더 정확한 답변을 끌어내는 방법을 프롬프트 엔지니어가 원격 지도"
+      },
+      {
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        ),
+        session: "서비스 퀄리티 향상", desc: "부족했던 화면(UI)을 다듬고 핵심 기능 추가 구현"
+      },
+      {
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        ),
+        session: "실전 스펙 완성", desc: "이력서(포트폴리오)에 바로 쓸 수 있는 완벽한 서비스로 발전"
+      },
     ],
   },
   {
     type: "timeline-single",
     num: "4",
-    badge: "본선",
+    badge: "6/10 (수)",
     title: "본선",
-    sub: "6/03 (수)",
+    sub: "6/10 (수)",
     items: [
       { time: "13:30–14:00", session: "행사장 집결", desc: "본선 발표 자료/화면 최종 점검" },
       { time: "14:00–15:00", session: "팀별 최종 발표", desc: "10분 발표 + 5분 심사위원 질문" },
@@ -134,39 +155,35 @@ export default function SchedulePage() {
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <h1 className="flex justify-center text-4xl font-extrabold text-black mb-2">주요 일정</h1>
-        <p className="flex justify-center text-[#999] text-xl mb-12">KIROTHON 주요 일정 안내</p>
+        <p className="flex justify-center text-[#555] text-xl mb-12">KIROTHON 주요 일정 안내</p>
 
-        <div className="flex gap-8 items-start">
+        <div className="flex gap-6 items-start">
           {/* 왼쪽: 일정 목록 */}
-          <div className="flex flex-col gap-0 w-56 shrink-0">
+          <div className="flex flex-col gap-2 w-52 shrink-0">
             {sections.map((s, i) => (
-              <div key={s.title} className="flex gap-3">
-                <div className="flex flex-col items-center">
-                  <button
-                    onClick={() => { setSelected(i); setSelectedPhase(0); setSelectedDay(0); }}
-                    className={`w-9 h-9 rounded-full text-lg font-extrabold shrink-0 flex items-center justify-center leading-none transition-colors ${
-                      selected === i
-                        ? "bg-purple-600 text-white"
-                        : "bg-black/10 text-black/40 hover:bg-black/15"
-                    }`}
-                  >
-                    {s.num}
-                  </button>
-                  {i < sections.length - 1 && (
-                    <div className="w-0.5 h-10 bg-black/10 my-1" />
-                  )}
-                </div>
-
-                <button
-                  onClick={() => { setSelected(i); setSelectedPhase(0); setSelectedDay(0); }}
-                  className="text-left pt-1.5 pb-10"
-                >
-                  <p className={`font-bold text-sm leading-tight transition-colors ${selected === i ? "text-purple-600" : "text-black/50 hover:text-black/80"}`}>
+              <button
+                key={s.title}
+                onClick={() => { setSelected(i); setSelectedPhase(0); setSelectedDay(0); }}
+                className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl transition-all duration-150 ${
+                  selected === i
+                    ? "bg-purple-600 shadow-sm"
+                    : "bg-white border border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                }`}
+              >
+                <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold shrink-0 ${
+                  selected === i
+                    ? "bg-white text-purple-600"
+                    : "bg-[#F3F6F9] text-black/70"
+                }`}>
+                  {s.num}
+                </span>
+                <div>
+                  <p className={`font-bold text-sm leading-tight ${selected === i ? "text-white" : "text-black/80"}`}>
                     {s.title}
                   </p>
-                  <p className="text-xs text-black/30 mt-0.5">{s.sub}</p>
-                </button>
-              </div>
+                  <p className={`text-xs mt-0.5 ${selected === i ? "text-white/70" : "text-black/50"}`}>{s.badge}</p>
+                </div>
+              </button>
             ))}
           </div>
 
@@ -183,7 +200,7 @@ export default function SchedulePage() {
                       className={`px-4 py-1.5 rounded text-xs font-bold transition-colors ${
                         selectedPhase === i
                           ? "bg-purple-600 text-white"
-                          : "bg-[#F3F6F9] text-black/60 hover:bg-[#e4eaf0]"
+                          : "bg-[#F3F6F9] text-black/70 hover:bg-[#e4eaf0]"
                       }`}
                     >
                       {p.badge}
@@ -192,12 +209,12 @@ export default function SchedulePage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-black mb-1">{section.phases[selectedPhase].title}</h3>
-                  <p className="text-xs text-[#999] mb-4">{section.phases[selectedPhase].sub}</p>
+                  <p className="text-xs text-[#555] mb-4">{section.phases[selectedPhase].sub}</p>
                   <div className="space-y-3">
                     {section.phases[selectedPhase].items.map((item, i) => (
                       <div key={i} className="flex gap-3 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
                         <span className="text-purple-500 font-bold shrink-0 mt-0.5">✓</span>
-                        <p className="text-sm text-black/80 leading-relaxed">{item}</p>
+                        <p className="text-sm text-black/90 leading-relaxed">{item}</p>
                       </div>
                     ))}
                   </div>
@@ -216,7 +233,7 @@ export default function SchedulePage() {
                       className={`px-4 py-1.5 rounded text-xs font-bold transition-colors ${
                         selectedDay === i
                           ? "bg-purple-600 text-white"
-                          : "bg-[#F3F6F9] text-black/60 hover:bg-[#e4eaf0]"
+                          : "bg-[#F3F6F9] text-black/70 hover:bg-[#e4eaf0]"
                       }`}
                     >
                       {d.badge}
@@ -225,7 +242,7 @@ export default function SchedulePage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-black mb-1">{section.days[selectedDay].title}</h3>
-                  <p className="text-xs text-[#999] mb-4">{section.days[selectedDay].sub}</p>
+                  <p className="text-xs text-[#555] mb-4">{section.days[selectedDay].sub}</p>
                   <div className="space-y-3">
                     {section.days[selectedDay].items.map((item, i) => (
                       <div key={i} className="flex gap-4 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
@@ -234,7 +251,7 @@ export default function SchedulePage() {
                         </span>
                         <div>
                           <span className="text-sm font-semibold text-black">{item.session}</span>
-                          <p className="text-sm text-[#999] leading-relaxed mt-0.5">{item.desc}</p>
+                          <p className="text-sm text-[#555] leading-relaxed mt-0.5">{item.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -245,43 +262,55 @@ export default function SchedulePage() {
 
             {/* 불릿 타입 */}
             {section.type === "bullet" && (
-              <div className="space-y-3">
-                {(section.items as BulletItem[]).map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-xl shrink-0">{item.icon}</span>
-                    <div>
-                      <span className="text-sm font-semibold text-black">{item.session}</span>
-                      <p className="text-sm text-[#999] leading-relaxed mt-0.5">{item.desc}</p>
+              <div>
+                <div className="mb-5">
+                  <h2 className="text-2xl font-extrabold text-black mb-1">{section.title}</h2>
+                  <p className="text-sm text-[#555]">{section.sub}</p>
+                </div>
+                <div className="space-y-3">
+                  {(section.items as BulletItem[]).map((item, i) => (
+                    <div key={i} className="flex gap-4 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
+                      <span className="text-xl shrink-0">{item.icon}</span>
+                      <div>
+                        <span className="text-sm font-semibold text-black">{item.session}</span>
+                        <p className="text-sm text-[#555] leading-relaxed mt-0.5">{item.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             )}
 
             {/* 본선 타임라인 */}
             {section.type === "timeline-single" && (
-              <div className="space-y-3">
-                {(section.items as TimelineItem[]).map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-sm font-mono font-bold text-purple-500 whitespace-nowrap shrink-0 w-32 mt-0.5">
-                      {item.time}
-                    </span>
-                    <div>
-                      <span className="text-sm font-semibold text-black">{item.session}</span>
-                      <p className="text-sm text-[#999] leading-relaxed mt-0.5">{item.desc}</p>
+              <div>
+                <div className="mb-5">
+                  <h2 className="text-2xl font-extrabold text-black mb-1">{section.title}</h2>
+                  <p className="text-sm text-[#555]">{section.sub}</p>
+                </div>
+                <div className="space-y-3">
+                  {(section.items as TimelineItem[]).map((item, i) => (
+                    <div key={i} className="flex gap-4 items-start bg-white rounded-xl px-4 py-3 border border-gray-100">
+                      <span className="text-sm font-mono font-bold text-purple-500 whitespace-nowrap shrink-0 w-32 mt-0.5">
+                        {item.time}
+                      </span>
+                      <div>
+                        <span className="text-sm font-semibold text-black">{item.session}</span>
+                        <p className="text-sm text-[#555] leading-relaxed mt-0.5">{item.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
                 <div className="mt-8">
                   <p className="text-black font-bold text-sm mb-3">심사기준</p>
                   <div className="grid grid-cols-2 gap-3">
                     {judgingCards.map((card) => (
                       <div key={card.title} className={`rounded-xl p-4 border-l-4 ${card.borderColor} ${card.bgColor}`}>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className={`text-lg font-extrabold `}>{card.pct}</span>
-                          <span className={`text-sm font-bold `}>{card.title}</span>
+                          <span className="text-lg font-extrabold">{card.pct}</span>
+                          <span className="text-sm font-bold">{card.title}</span>
                         </div>
-                        <p className={`text-xs leading-relaxed text-[#999]`}>{card.desc}</p>
+                        <p className="text-xs leading-relaxed text-[#555]">{card.desc}</p>
                       </div>
                     ))}
                   </div>

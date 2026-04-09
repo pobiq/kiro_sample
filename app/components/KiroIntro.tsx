@@ -85,13 +85,13 @@ const roles = [
 export default function KiroIntro() {
   return (
     <section id="kiro-intro" className="bg-white py-20">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         {/* 헤더 */}
         <div className="flex items-center justify-center gap-3 mb-4">
           <img src="/kiro-logo.svg" alt="Kiro" className="w-12 h-12 rounded-xl" />
           <h2 className="text-4xl font-bold text-black">AWS Kiro란?</h2>
         </div>
-        <p className="text-[#999] text-center mb-14">
+        <p className="text-[#777A83] text-center mb-12">
           비전공자도 말(자연어)로 명령만 하면, 요구사항 분석부터 시스템 설계, 코드 작성, 서비스 출시까지<br />
           모두 알아서 해주는 <span className="text-black font-semibold">초거대 AI 개발 플랫폼</span>입니다.
         </p>
@@ -102,7 +102,7 @@ export default function KiroIntro() {
             <div key={f.title} className="bg-gray-50 rounded-2xl p-7 border border-gray-200 hover:border-gray-300 hover:-translate-y-1 transition-all duration-200">
               <div className="text-3xl mb-3 flex">{f.icon}</div>
               <h3 className="font-bold text-black text-lg mb-2">{f.title}</h3>
-              <p className="text-[#999] leading-relaxed mb-3">{f.desc}</p>
+              <p className="text-[#777A83] leading-relaxed mb-3">{f.desc}</p>
               <div className="bg-gray-100 rounded-lg px-4 py-2.5 text-xs text-purple-600 leading-relaxed">
                 {f.example}
               </div>
@@ -118,10 +118,9 @@ export default function KiroIntro() {
               <div key={r.num} className={`rounded-2xl p-5 border ${r.accent} hover:-translate-y-1 transition-transform duration-200`}>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl">{r.icon}</span>
-                  <span className={`text-2xl font-extrabold ${r.numColor}`}>{r.num}</span>
                 </div>
                 <p className="text-black font-bold text-sm mb-1.5">{r.title}</p>
-                <p className="text-[#999] text-xs leading-relaxed">{r.desc}</p>
+                <p className="text-[#777A83] text-xs leading-relaxed">{r.desc}</p>
               </div>
             ))}
           </div>

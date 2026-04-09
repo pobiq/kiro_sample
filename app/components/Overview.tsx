@@ -10,19 +10,19 @@ const infoRows = [
 export default function Overview() {
   return (
     <section id="overview" className="bg-white py-20 border-b border-gray-100">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
 
         {/* 섹션 헤더 */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-black mb-3">대회 개요</h2>
-          <p className="text-[#999] text-lg">
+          <p className="text-[#777A83] text-lg">
             AI와 함께 아이디어를 현실로 — 원주 대학 연합이 함께하는 해커톤
           </p>
         </div>
 
         {/* 대회 정보 테이블 */}
         <div className="rounded-xl border border-[#D7D7D7] overflow-hidden">
-          {infoRows.map((row, i) => (
+          {infoRows.map((row) => (
             <div
               key={row.label}
               className={`flex items-center gap-0 `}
