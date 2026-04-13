@@ -52,16 +52,10 @@ export default function TeamBuildingPage() {
 
       {/* 페이지 헤더 */}
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <h1 className="flex justify-center text-4xl font-extrabold text-black mb-2">팀 정보</h1>
+        <h1 className="flex justify-center text-4xl font-extrabold text-black mb-5">팀 정보</h1>
 
         {/* 팀 목록 */}
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2">
-              <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded">팀 목록</span>
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SAMPLE_TEAMS.map((team) => (
               <div key={team.id} className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col gap-4 hover:border-purple-300 hover:shadow-sm transition-all">
