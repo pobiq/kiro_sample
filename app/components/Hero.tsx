@@ -17,7 +17,8 @@ export default function Hero() {
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="#apply"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSffofTbutmOmAhXuBIT-UL4z3OkB77c1__sAUcZ1Ex9fbZCuA/viewform?usp=publish-editor"
+            target="_blank"
             className="px-8 py-3.5 bg-purple-900 hover:bg-purple-500 rounded-xl font-semibold transition-colors text-sm"
           >
             지금 신청하기
