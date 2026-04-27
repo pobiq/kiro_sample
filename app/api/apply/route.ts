@@ -25,13 +25,13 @@ export async function POST(req: Request) {
         fields: {
           create: (fieldIds ?? []).map((fieldId: number) => ({
             fieldId,
-            customText: customFields?.[fieldId] ?? null,
+            customText: customFields?.[String(fieldId)] ?? null,
           })),
         },
         languages: {
           create: (languageIds ?? []).map((languageId: number) => ({
             languageId,
-            customText: customLanguages?.[languageId] ?? null,
+            customText: customLanguages?.[String(languageId)] ?? null,
           })),
         },
         experience: {
