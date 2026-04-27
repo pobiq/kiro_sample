@@ -254,7 +254,7 @@ export default function ApplyForm() {
                   {field.id === OTHER_FIELD_ID && (
                     <input type="text" placeholder="직접 입력" value={fieldCustomText} maxLength={100}
                       onChange={(e) => setFieldCustomText(e.target.value)}
-                      className={`border-b border-gray-300 focus:outline-none focus:border-purple-400 text-sm w-20 transition-opacity ${
+                      className={`border-b border-gray-300 focus:outline-none focus:border-purple-400 text-sm w-40 transition-opacity ${
                         selectedFields.includes(OTHER_FIELD_ID)
                           ? "opacity-100"
                           : "opacity-0 pointer-events-none"
@@ -337,7 +337,7 @@ export default function ApplyForm() {
                   {lang.id === OTHER_LANG_ID && (
                     <input type="text" placeholder="직접 기재" value={langCustomText} maxLength={100}
                       onChange={(e) => setLangCustomText(e.target.value)}
-                      className={`border-b border-gray-300 focus:outline-none focus:border-purple-400 text-sm w-24 transition-opacity ${
+                      className={`border-b border-gray-300 focus:outline-none focus:border-purple-400 text-sm w-40 transition-opacity ${
                         selectedLanguages.includes(OTHER_LANG_ID)
                           ? "opacity-100"
                           : "opacity-0 pointer-events-none"
