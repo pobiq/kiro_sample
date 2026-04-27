@@ -16,12 +16,11 @@ export default function Header() {
           <Link href="/team-info" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">팀 정보</Link>
           <Link href="/schedule" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">주요 일정</Link>
           <Link href="/#faq" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">FAQ</Link>
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSffofTbutmOmAhXuBIT-UL4z3OkB77c1__sAUcZ1Ex9fbZCuA/viewform?usp=publish-editor"
-            target="_blank"
+          <Link
+            href="/apply"
             className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-medium transition-colors">
               참가 신청
-          </a>
+          </Link>
           
         </nav>
       </div>
