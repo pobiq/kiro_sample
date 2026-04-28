@@ -13,7 +13,6 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-black">
           <Link href="/#kiro-intro" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Kiro 란?</Link>
           <Link href="/#about" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">대회 소개</Link>
-          <Link href="/team-info" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">팀 정보</Link>
           <Link href="/schedule" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">주요 일정</Link>
           <Link href="/#faq" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">FAQ</Link>
           <Link

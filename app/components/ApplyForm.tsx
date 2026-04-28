@@ -22,14 +22,23 @@ const LANGUAGES = [
   { id: 5, label: "기타" },
 ];
 
+const PHONE_PREFIXES = ["010", "011", "016", "017", "018", "019"];
+
+const EMAIL_DOMAINS = [
+  "gmail.com", "naver.com", "daum.net",
+  "kakao.com", "hotmail.com", "nate.com", "직접입력",
+];
+
 const OTHER_FIELD_ID = 6;
 const OTHER_LANG_ID = 5;
 
-const inputCls =
-  "w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-200 transition";
-
 function Req() {
   return <span className="text-red-500 ml-0.5">*</span>;
+}
+
+function FieldError({ msg }: { msg?: string }) {
+  if (!msg) return null;
+  return <p className="text-red-500 text-xs mt-1">{msg}</p>;
 }
 
 export default function ApplyForm() {
@@ -38,11 +47,19 @@ export default function ApplyForm() {
     university: "",
     department: "",
     studentId: "",
-    phone: "",
-    email: "",
     grade: "",
     gender: "",
   });
+
+  // 연락처 — 3분할 입력
+  const [phonePart1, setPhonePart1] = useState("010");
+  const [phonePart2, setPhonePart2] = useState("");
+  const [phonePart3, setPhonePart3] = useState("");
+
+  // 이메일 — local + 도메인 selectbox
+  const [emailLocal, setEmailLocal] = useState("");
+  const [emailDomain, setEmailDomain] = useState("");
+  const [emailCustomDomain, setEmailCustomDomain] = useState("");
 
   const [selectedFields, setSelectedFields] = useState<number[]>([]);
   const [fieldCustomText, setFieldCustomText] = useState("");
@@ -65,33 +82,132 @@ export default function ApplyForm() {
   const [showPrivacy, setShowPrivacy] = useState(false);
 
   const [state, setState] = useState<FormState>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const toggleField = (id: number) =>
+  const toggleField = (id: number) => {
     setSelectedFields((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
+    clearError("fields");
+  };
 
   const toggleLanguage = (id: number) =>
     setSelectedLanguages((prev) =>
       prev.includes(id) ? prev.filter((l) => l !== id) : [...prev, id]
     );
 
+  // 특정 필드의 오류 메시지 제거 — 사용자가 값을 수정할 때 호출
+  const clearError = (field: string) =>
+    setErrors((prev) => { const n = { ...prev }; delete n[field]; return n; });
+
+  // form 상태 업데이트 + 해당 필드 오류 동시 제거
+  const setField = (field: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    clearError(field);
+  };
+
+  // 오류 여부에 따라 테두리 색상을 바꾸는 input className 생성기
+  const ic = (field: string) =>
+    `w-full border rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 transition ${
+      errors[field]
+        ? "border-red-400 focus:border-red-400 focus:ring-red-100"
+        : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"
+    }`;
+
+  const selectCls = (field: string) =>
+    `border rounded-lg px-4 py-2.5 pr-6 text-sm text-gray-900 focus:outline-none focus:ring-1 transition bg-white appearance-none ${
+      errors[field]
+        ? "border-red-400 focus:border-red-400 focus:ring-red-100"
+        : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"
+    }`;
+
+  // Tailwind bg-[url(...)]이 데이터 URL과 호환되지 않아 style prop으로 직접 적용
+  const arrowStyle: React.CSSProperties = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23111827'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right 0.35rem center",
+    backgroundSize: "1rem 1rem",
+  };
+
+  const textareaCls =
+    "w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-200 transition resize-none";
+
+  /**
+   * 클라이언트 사이드 유효성 검사
+   * 형식 오류(성명 한글·영문, 학번 숫자, 연락처 형식, 이메일 형식)와 필수 항목 누락을 모두 검사
+   * 오류가 있으면 { 필드명: 오류메시지 } 객체 반환, 없으면 빈 객체 반환
+   */
+  const validate = (): Record<string, string> => {
+    const e: Record<string, string> = {};
+
+    const name = form.name.trim();
+    if (!name) e.name = "성명을 입력해주세요.";
+    else if (name.length < 2) e.name = "성명은 2자 이상 입력해주세요.";
+    else if (!/^[가-힣a-zA-Z\s]+$/.test(name)) e.name = "성명은 한글 또는 영문만 입력 가능합니다.";
+
+    if (!form.university.trim()) e.university = "소속대학을 입력해주세요.";
+    else if (form.university.trim().length < 2) e.university = "소속대학은 2자 이상 입력해주세요.";
+
+    if (!form.department.trim()) e.department = "소속학과를 입력해주세요.";
+    else if (form.department.trim().length < 2) e.department = "소속학과는 2자 이상 입력해주세요.";
+
+    const sid = form.studentId.trim();
+    if (!sid) e.studentId = "학번을 입력해주세요.";
+    else if (!/^\d{5,}$/.test(sid)) e.studentId = "학번은 숫자 5자리 이상 입력해주세요.";
+
+    // 연락처 — 중간·끝자리 검사
+    if (!phonePart2 || !phonePart3) {
+      e.phone = "연락처를 모두 입력해주세요.";
+    } else if (!/^\d{3,4}$/.test(phonePart2) || !/^\d{4}$/.test(phonePart3)) {
+      e.phone = "연락처 번호를 올바르게 입력해주세요.";
+    }
+
+    // 이메일 — local + 도메인 검사
+    const resolvedDomain = emailDomain === "직접입력" ? emailCustomDomain.trim() : emailDomain;
+    if (!emailLocal.trim()) {
+      e.email = "이메일 아이디를 입력해주세요.";
+    } else if (!emailDomain) {
+      e.email = "이메일 도메인을 선택해주세요.";
+    } else if (emailDomain === "직접입력" && !emailCustomDomain.trim()) {
+      e.email = "도메인을 직접 입력해주세요.";
+    } else if (!/^[^\s@]+$/.test(emailLocal.trim()) || !/^[^\s@]+\.[^\s@]+$/.test(resolvedDomain)) {
+      e.email = "올바른 이메일 형식으로 입력해주세요.";
+    }
+
+    if (!form.grade) e.grade = "학년을 선택해주세요.";
+    if (!form.gender) e.gender = "성별을 선택해주세요.";
+    if (selectedFields.length === 0) e.fields = "신청 분야를 하나 이상 선택해주세요.";
+    if (!privacyAgreed) e.privacy = "개인정보 수집 및 이용에 동의해주세요.";
+
+    return e;
+  };
+
+  /**
+   * 신청 제출 핸들러
+   * 1) 클라이언트 validation → 오류 있으면 첫 번째 오류 필드로 스크롤 후 중단
+   * 2) 분할 입력된 연락처·이메일을 단일 문자열로 조합 후 POST /api/apply 호출
+   * 3) 서버에서 오류 반환 시 필드별 오류 메시지 표시
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedFields.length === 0) {
-      setErrorMsg("신청 분야를 하나 이상 선택해주세요.");
+
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       setState("error");
-      return;
-    }
-    if (!privacyAgreed) {
-      setErrorMsg("개인정보 수집 및 이용에 동의해주세요.");
-      setState("error");
+      // 첫 번째 오류 필드로 스크롤
+      const firstErrField = Object.keys(validationErrors)[0];
+      document.getElementById(firstErrField)?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
 
     setState("loading");
-    setErrorMsg("");
+    setErrors({});
+
+    // 분할 입력값 조합
+    const phone = `${phonePart1}-${phonePart2}-${phonePart3}`;
+    const domain = emailDomain === "직접입력" ? emailCustomDomain.trim() : emailDomain;
+    const email = `${emailLocal.trim()}@${domain}`;
 
     const customFields: Record<number, string> = {};
     if (selectedFields.includes(OTHER_FIELD_ID) && fieldCustomText)
@@ -107,6 +223,8 @@ export default function ApplyForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          phone,
+          email,
           fieldIds: selectedFields,
           customFields,
           languageIds: selectedLanguages,
@@ -125,12 +243,19 @@ export default function ApplyForm() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.message || "서버 오류가 발생했습니다.");
+        if (data.errors) {
+          setErrors(data.errors);
+          setState("error");
+        } else {
+          setErrors({ _global: data.message || "서버 오류가 발생했습니다." });
+          setState("error");
+        }
+        return;
       }
 
       setState("success");
-    } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "알 수 없는 오류가 발생했습니다.");
+    } catch {
+      setErrors({ _global: "알 수 없는 오류가 발생했습니다." });
       setState("error");
     }
   };
@@ -162,7 +287,7 @@ export default function ApplyForm() {
           <h1 className="text-3xl font-extrabold mb-2 text-gray-900">참가 신청</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-8 space-y-8 shadow-sm">
+        <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-2xl p-8 space-y-8 shadow-sm">
 
           {/* ── 1. 기본 정보 ── */}
           <section>
@@ -171,49 +296,106 @@ export default function ApplyForm() {
             </h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">성명<Req /></label>
-                <input type="text" required placeholder="홍길동" value={form.name} maxLength={60}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputCls} />
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">성명<Req /></label>
+                <input id="name" type="text" placeholder="홍길동" value={form.name} maxLength={60}
+                  onChange={(e) => setField("name", e.target.value)} className={ic("name")} />
+                <FieldError msg={errors.name} />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">소속대학<Req /></label>
-                <input type="text" required placeholder="연세대학교 미래캠퍼스" value={form.university} maxLength={100}
-                  onChange={(e) => setForm({ ...form, university: e.target.value })} className={inputCls} />
+                <label htmlFor="university" className="block text-sm font-medium text-gray-700 mb-1">소속대학<Req /></label>
+                <input id="university" type="text" placeholder="연세대학교 미래캠퍼스" value={form.university} maxLength={100}
+                  onChange={(e) => setField("university", e.target.value)} className={ic("university")} />
+                <FieldError msg={errors.university} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">소속학과<Req /></label>
-                  <input type="text" required placeholder="컴퓨터공학과" value={form.department} maxLength={100}
-                    onChange={(e) => setForm({ ...form, department: e.target.value })} className={inputCls} />
+                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">소속학과<Req /></label>
+                  <input id="department" type="text" placeholder="컴퓨터공학과" value={form.department} maxLength={100}
+                    onChange={(e) => setField("department", e.target.value)} className={ic("department")} />
+                  <FieldError msg={errors.department} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">학번<Req /></label>
-                  <input type="text" required placeholder="2024000000" value={form.studentId} maxLength={50}
-                    onChange={(e) => setForm({ ...form, studentId: e.target.value })} className={inputCls} />
+                  <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">학번<Req /></label>
+                  <input id="studentId" type="text" placeholder="2024000000" value={form.studentId} maxLength={50}
+                    onChange={(e) => setField("studentId", e.target.value)} className={ic("studentId")} />
+                  <FieldError msg={errors.studentId} />
+                </div>
+              </div>
+
+              {/* 연락처 + 이메일 — 좌우 배치 */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* 연락처 — 3분할 입력 */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">연락처 (h.p)<Req /></label>
+                  <div id="phone" className="flex items-center gap-1">
+                    <select
+                      value={phonePart1}
+                      onChange={(e) => { setPhonePart1(e.target.value); clearError("phone"); }}
+                      className={`${selectCls("phone")} w-20 flex-shrink-0`}
+                      style={arrowStyle}
+                    >
+                      {PHONE_PREFIXES.map((p) => <option key={p} value={p}>{p}</option>)}
+                    </select>
+                    <div className="flex-shrink-0 w-3 h-0.5 bg-gray-400 rounded" />
+                    <input
+                      type="text" inputMode="numeric" placeholder="0000" value={phonePart2} maxLength={4}
+                      onChange={(e) => { setPhonePart2(e.target.value.replace(/\D/g, "")); clearError("phone"); }}
+                      className={`${errors.phone ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"} w-24 border rounded-lg px-2 py-2.5 text-sm text-center focus:outline-none focus:ring-1 transition`}
+                    />
+                    <div className="flex-shrink-0 w-3 h-0.5 bg-gray-400 rounded" />
+                    <input
+                      type="text" inputMode="numeric" placeholder="0000" value={phonePart3} maxLength={4}
+                      onChange={(e) => { setPhonePart3(e.target.value.replace(/\D/g, "")); clearError("phone"); }}
+                      className={`${errors.phone ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"} w-24 border rounded-lg px-2 py-2.5 text-sm text-center focus:outline-none focus:ring-1 transition`}
+                    />
+                  </div>
+                  <FieldError msg={errors.phone} />
+                </div>
+
+                {/* 이메일 — local + 도메인 selectbox */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">이메일주소<Req /></label>
+                  <div id="email" className="flex items-center gap-1">
+                    <input
+                      type="text" placeholder="example" value={emailLocal} maxLength={50}
+                      onChange={(e) => { setEmailLocal(e.target.value.replace(/\s/g, "")); clearError("email"); }}
+                      className={`${errors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"} w-2/5 border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 transition`}
+                    />
+                    <span className="text-gray-400 font-medium">@</span>
+                    <select
+                      value={emailDomain}
+                      onChange={(e) => { setEmailDomain(e.target.value); setEmailCustomDomain(""); clearError("email"); }}
+                      className={`${selectCls("email")} flex-1`}
+                      style={arrowStyle}
+                    >
+                      <option value="">선택</option>
+                      {EMAIL_DOMAINS.map((d) => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                  </div>
+                  {emailDomain === "직접입력" && (
+                    <input
+                      type="text" placeholder="예: company.com" value={emailCustomDomain} maxLength={50}
+                      onChange={(e) => { setEmailCustomDomain(e.target.value.replace(/\s/g, "")); clearError("email"); }}
+                      className={`mt-2 ${errors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"} w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 transition`}
+                    />
+                  )}
+                  <FieldError msg={errors.email} />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">연락처 (h.p)<Req /></label>
-                  <input type="tel" required placeholder="010-0000-0000" value={form.phone} maxLength={20}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputCls} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">이메일주소<Req /></label>
-                  <input type="email" required placeholder="example@email.com" value={form.email} maxLength={100}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputCls} />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">학년<Req /></label>
-                  <select required value={form.grade}
-                    onChange={(e) => setForm({ ...form, grade: e.target.value })}
-                    className={inputCls}>
+                  <label htmlFor="grade" className="block text-sm font-medium text-gray-700 mb-1">학년<Req /></label>
+                  <select id="grade" value={form.grade}
+                    onChange={(e) => setField("grade", e.target.value)}
+                    className={`w-full border rounded-lg px-3 py-1 pr-6 text-sm text-gray-900 focus:outline-none focus:ring-1 transition appearance-none bg-white ${
+                      errors.grade
+                        ? "border-red-400 focus:border-red-400 focus:ring-red-100"
+                        : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"
+                    }`}
+                    style={arrowStyle}>
                     <option value="">선택</option>
                     <option value="1학년">1학년</option>
                     <option value="2학년">2학년</option>
@@ -221,20 +403,22 @@ export default function ApplyForm() {
                     <option value="4학년">4학년</option>
                     <option value="대학원생">대학원생</option>
                   </select>
+                  <FieldError msg={errors.grade} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">성별<Req /></label>
-                  <div className="flex gap-6 mt-2.5">
+                  <div id="gender" className="flex gap-6 mt-2.5">
                     {["남", "여"].map((g) => (
                       <label key={g} className="flex items-center gap-2 text-sm cursor-pointer">
-                        <input type="radio" name="gender" required value={g}
+                        <input type="radio" name="gender" value={g}
                           checked={form.gender === g}
-                          onChange={() => setForm({ ...form, gender: g })}
+                          onChange={() => { setForm((p) => ({ ...p, gender: g })); clearError("gender"); }}
                           className="accent-purple-600" />
                         {g}
                       </label>
                     ))}
                   </div>
+                  <FieldError msg={errors.gender} />
                 </div>
               </div>
             </div>
@@ -245,7 +429,7 @@ export default function ApplyForm() {
             <h2 className="text-base font-bold text-gray-800 mb-1 pb-2 border-b border-gray-100">
               신청 분야<Req /> <span className="text-xs font-normal text-gray-400">(복수 선택 가능)</span>
             </h2>
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div id="fields" className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
               {FIELDS.map((field) => (
                 <label key={field.id} className="flex items-center gap-2 text-sm cursor-pointer">
                   <input type="checkbox" checked={selectedFields.includes(field.id)}
@@ -263,6 +447,7 @@ export default function ApplyForm() {
                 </label>
               ))}
             </div>
+            <FieldError msg={errors.fields} />
           </section>
 
           {/* ── 3. 경험 정보 ── */}
@@ -356,7 +541,7 @@ export default function ApplyForm() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">사용가능한 개발툴</label>
                 <textarea rows={2} value={tools} maxLength={500} onChange={(e) => setTools(e.target.value)}
                   placeholder="자주 사용하는 툴 중심으로 2~3개만 작성  예시) VS Code, Git, Slack 등"
-                  className={`${inputCls} resize-none`} />
+                  className={textareaCls} />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -364,7 +549,7 @@ export default function ApplyForm() {
                 </label>
                 <textarea rows={4} value={devExpDetail} maxLength={2000} onChange={(e) => setDevExpDetail(e.target.value)}
                   placeholder={`경험한 프로젝트명, 역할, 사용한 언어/프레임워크 등을 간단히 작성\n예시)\n- 웹 개발 동아리 활동 (HTML/CSS, JavaScript 사용)\n- 캡스톤디자인 과목에서 팀 프로젝트 참여 (백엔드 개발)`}
-                  className={`${inputCls} resize-none`} />
+                  className={textareaCls} />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -372,7 +557,7 @@ export default function ApplyForm() {
                 </label>
                 <textarea rows={4} value={aiExpDetail} maxLength={2000} onChange={(e) => setAiExpDetail(e.target.value)}
                   placeholder={`예시)\n- 머신러닝 과목 수강 (사이킷런 실습)\n- GPT 기반 챗봇 개발 경험\n- Python으로 데이터 전처리 및 분석 프로젝트 수행`}
-                  className={`${inputCls} resize-none`} />
+                  className={textareaCls} />
               </div>
             </div>
           </section>
@@ -383,7 +568,6 @@ export default function ApplyForm() {
               개인정보 수집 및 이용 동의<Req />
             </h2>
 
-            {/* 동의서 본문 */}
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-xs text-gray-600 leading-relaxed space-y-3">
               <p className="font-semibold text-gray-700">개인정보 수집 및 이용에 관한 안내</p>
               <table className="w-full border-collapse text-xs">
@@ -428,20 +612,20 @@ export default function ApplyForm() {
               )}
             </div>
 
-            {/* 동의 체크박스 */}
-            <label className="flex items-start gap-3 mt-4 cursor-pointer group">
+            <label id="privacy" className="flex items-start gap-3 mt-4 cursor-pointer group">
               <input type="checkbox" checked={privacyAgreed}
-                onChange={(e) => setPrivacyAgreed(e.target.checked)}
+                onChange={(e) => { setPrivacyAgreed(e.target.checked); clearError("privacy"); }}
                 className="mt-0.5 w-4 h-4 accent-purple-600 flex-shrink-0" />
               <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                 위 개인정보 수집 및 이용에 관한 안내를 읽었으며, 이에 <span className="font-semibold text-purple-600">동의합니다.</span>
                 <Req />
               </span>
             </label>
+            <FieldError msg={errors.privacy} />
           </section>
 
-          {state === "error" && (
-            <p className="text-red-500 text-sm">{errorMsg}</p>
+          {errors._global && (
+            <p className="text-red-500 text-sm">{errors._global}</p>
           )}
 
           <button type="submit" disabled={state === "loading"}
