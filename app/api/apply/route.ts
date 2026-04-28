@@ -119,9 +119,14 @@ export async function POST(req: Request) {
 
 /**
  * 전체 신청자 목록 조회 (GET /api/apply)
- * DB에서 암호화된 민감 정보를 복호화한 뒤 반환 — 추후 관리자 인증 추가 필요
+ * Authorization: Bearer <ADMIN_SECRET> 헤더 필요
  */
-export async function GET() {
+export async function GET(req: Request) {
+  const auth = req.headers.get("authorization");
+  if (!process.env.ADMIN_SECRET || auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const participants = await prisma.participant.findMany({
       include: {

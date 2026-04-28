@@ -304,7 +304,7 @@ export default function ApplyForm() {
 
               <div>
                 <label htmlFor="university" className="block text-sm font-medium text-gray-700 mb-1">소속대학<Req /></label>
-                <input id="university" type="text" placeholder="연세대학교 미래캠퍼스" value={form.university} maxLength={100}
+                <input id="university" type="text" placeholder="OO대학교" value={form.university} maxLength={100}
                   onChange={(e) => setField("university", e.target.value)} className={ic("university")} />
                 <FieldError msg={errors.university} />
               </div>
@@ -376,7 +376,7 @@ export default function ApplyForm() {
                   </div>
                   {emailDomain === "직접입력" && (
                     <input
-                      type="text" placeholder="예: company.com" value={emailCustomDomain} maxLength={50}
+                      type="text" placeholder="company.com" value={emailCustomDomain} maxLength={50}
                       onChange={(e) => { setEmailCustomDomain(e.target.value.replace(/\s/g, "")); clearError("email"); }}
                       className={`mt-2 ${errors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-gray-200 focus:border-purple-400 focus:ring-purple-200"} w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 transition`}
                     />
