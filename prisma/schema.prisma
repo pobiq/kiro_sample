@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Participant {
+  id                  Int      @id @default(autoincrement())
+  name                String   @db.VarChar(300)  // 암호화 저장 (AES-256-GCM base64)
+  university          String   @db.VarChar(100)
+  department          String   @db.VarChar(100)
+  studentId           String   @db.VarChar(200)  @map("student_id")  // 암호화 저장
+  phone               String   @db.VarChar(150)  // 암호화 저장
+  email               String   @db.VarChar(300)  // 암호화 저장
+  grade               String   @db.VarChar(20)
+  gender              String   @db.VarChar(10)
+  hackathonExperience Boolean? @map("hackathon_experience")
+  hackathonName       String?  @db.VarChar(255) @map("hackathon_name")
+  awardExperience     Boolean? @map("award_experience")
+  awardCompetition    String?  @db.VarChar(255) @map("award_competition")
+  awardName           String?  @db.VarChar(255) @map("award_name")
+  devExperience       Boolean? @map("dev_experience")
+  tools               String?  @db.Text
+  devExperienceDetail String?  @db.Text @map("dev_experience_detail")
+  aiExperienceDetail  String?  @db.Text @map("ai_experience_detail")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  fields    ParticipantField[]
+  languages ParticipantLanguage[]
+
+  @@map("tb_participants")
+}
+
+model Field {
+  id           Int                @id @default(autoincrement())
+  name         String             @db.VarChar(50)
+  participants ParticipantField[]
+
+  @@map("tb_fields")
+}
+
+model ParticipantField {
+  participantId Int     @map("participant_id")
+  fieldId       Int     @map("field_id")
+  customText    String? @db.VarChar(100) @map("custom_text")
+
+  participant Participant @relation(fields: [participantId], references: [id])
+  field       Field       @relation(fields: [fieldId], references: [id])
+
+  @@id([participantId, fieldId])
+  @@map("tb_participant_fields")
+}
+
+model Language {
+  id           Int                   @id @default(autoincrement())
+  name         String?               @db.VarChar(50)
+  participants ParticipantLanguage[]
+
+  @@map("tb_languages")
+}
+
+model ParticipantLanguage {
+  participantId Int     @map("participant_id")
+  languageId    Int     @map("language_id")
+  customText    String? @db.VarChar(100) @map("custom_text")
+
+  participant Participant @relation(fields: [participantId], references: [id])
+  language    Language    @relation(fields: [languageId], references: [id])
+
+  @@id([participantId, languageId])
+  @@map("tb_participant_languages")
+}

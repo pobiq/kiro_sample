@@ -11,10 +11,6 @@ export default function FAQ() {
       q: "개발 경험이 없어도 되나요?",
       a: "가능합니다. AI 기반 개발 환경(Kiro)을 활용합니다.",
     },
-    {
-      q: "숙박이 제공되나요?",
-      a: "예선 기간 동안 숙박 및 식사가 제공됩니다.",
-    },
   ];
 
   const [open, setOpen] = useState<number | null>(null);

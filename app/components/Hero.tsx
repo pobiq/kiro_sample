@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0d0d14] text-white">
@@ -16,12 +18,12 @@ export default function Hero() {
           <span className="text-purple-300 font-medium">AWS Kiro 기반 &apos;AI 자동 개발&apos; 해커톤</span>
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <a
-            href="#apply"
+          <Link
+            href="/apply"
             className="px-8 py-3.5 bg-purple-900 hover:bg-purple-500 rounded-xl font-semibold transition-colors text-sm"
           >
             지금 신청하기
-          </a>
+          </Link>
         </div>
       </div>
     </section>
