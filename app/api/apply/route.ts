@@ -118,7 +118,7 @@ export async function POST(req: Request) {
 }
 
 /**
- * 전체 신청자 목록 조회 (GET /api/apply)
+ * 전체 신청자 암호화된 정보(이름, 학번, 핸드폰번호, 이메일) 목록 조회 (GET /api/apply)
  * Authorization: Bearer <ADMIN_SECRET> 헤더 필요
  */
 export async function GET(req: Request) {
@@ -137,7 +137,6 @@ export async function GET(req: Request) {
     });
 
     const decrypted = participants.map((p) => ({
-      ...p,
       name: decrypt(p.name),
       studentId: decrypt(p.studentId),
       phone: decrypt(p.phone),
