@@ -137,6 +137,7 @@ export async function GET(req: Request) {
     });
 
     const decrypted = participants.map((p) => ({
+      id : p.id,
       name: decrypt(p.name),
       studentId: decrypt(p.studentId),
       phone: decrypt(p.phone),
