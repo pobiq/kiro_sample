@@ -8,7 +8,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <img src="/kiro-logo.svg" alt="Kiro" className="w-7 h-7 rounded-md" />
-          <span className="text-base font-bold tracking-tight text-black">KIROTHON</span>
+          <span className="text-base font-bold tracking-tight text-black">오픈소스 아이디어 경진대회</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-black">
           <Link href="/#kiro-intro" className="relative hover:text-black transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Kiro 란?</Link>

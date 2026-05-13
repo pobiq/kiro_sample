@@ -7,10 +7,6 @@ export default function FAQ() {
     { q: "개인도 참여 가능한가요?",
       a: "네 개인도 참여 가능합니다."
     },
-    {
-      q: "개발 경험이 없어도 되나요?",
-      a: "가능합니다. AI 기반 개발 환경(Kiro)을 활용합니다.",
-    },
   ];
 
   const [open, setOpen] = useState<number | null>(null);

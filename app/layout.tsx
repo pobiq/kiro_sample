@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "KIROTHON",
-  description: "원주 대학 연합 AI·클라우드 경진대회",
+  title: "오픈소스 아이디어 경진대회",
+  description: "동북권 개발자 대상",
 };
 
 export default function RootLayout({

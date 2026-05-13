@@ -93,7 +93,7 @@ export default function KiroIntro() {
         </div>
         <p className="text-[#777A83] text-center mb-12">
           비전공자도 말(자연어)로 명령만 하면, 요구사항 분석부터 시스템 설계, 코드 작성, 서비스 출시까지<br />
-          모두 알아서 해주는 <span className="text-black font-semibold">초거대 AI 개발 플랫폼</span>입니다.
+          모두 알아서 해주는 <span className="text-black font-semibold">AI 개발 플랫폼</span>입니다.
         </p>
 
         {/* 핵심 개념 2개 */}

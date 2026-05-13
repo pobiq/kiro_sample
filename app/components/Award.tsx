@@ -34,10 +34,10 @@ export default function Award() {
           <div className="text-5xl">✈️</div>
           <div>
             <div className="text-amber-400 font-bold uppercase tracking-widest mb-1">대상 + 최우수상 2팀 (최대 10명)</div>
-            <p className="text-2xl font-extrabold mb-1 text-black">7월초 일본 글로벌 IT 견학 (3박 4일)</p>
+            <p className="text-2xl font-extrabold mb-1 text-black">일본 글로벌 IT 견학 (3박 4일)</p>
             <p className="leading-relaxed text-black">
               AWS Japan 등 글로벌 클라우드 기업 심층 투어 · 현지 엔지니어 멘토링 · CIC Tokyo 스타트업 허브 방문<br />
-              항공·숙박·식사·현지 교통 <span className="text-amber-400 font-semibold">전액 지원</span>
+              {/* 항공·숙박·식사·현지 교통 <span className="text-amber-400 font-semibold">전액 지원</span> */}
             </p>
           </div>
         </div>
