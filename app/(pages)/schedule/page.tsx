@@ -13,59 +13,59 @@ type Section =
   | { type: "timeline-single"; num: string; badge: string; title: string; sub: string; items: TimelineItem[] };
 
 const sections: Section[] = [
-  {
-    type: "phases",
-    num: "1",
-    badge: "대회 7일 전",
-    title: "사전 기술 교육",
-    sub: "대회 1주일 전 온라인 사전 교육",
-    phases: [
-      {
-        badge: "Phase 1 (D-7)",
-        title: "사전 온라인 교육 자료 배포",
-        sub: "대회 7일 전",
-        items: [
-          "AWS Kiro 설치 가이드 및 환경 세팅 매뉴얼 배포",
-          "코딩 초보자를 위한 '바이브 코딩' 기본 개념 안내",
-          "사전 과제: 'Hello Kiro!' 실행해보기 미션 부여",
-          "PDF 가이드북 및 5분 내외의 짧은 튜토리얼 영상 링크 제공",
-        ],
-      },
-      {
-        badge: "Phase 2 (D-6 ~ D-1)",
-        title: "온라인 기술 질의응답 운영",
-        sub: "대회 6일 전 ~ 전날",
-        items: [
-          "전 참가자 대상 대회 전용 Slack 워크스페이스 초대",
-          "강사 및 멘토진이 상주하는 기술 질의 채널(Q&A) 오픈",
-          "사전 과제 수행 중 발생하는 각종 설치 에러 실시간 해결",
-          "비전공자도 포기하지 않도록 1:1 원격 트러블슈팅 지원",
-        ],
-      },
-      {
-        badge: "Phase 3 (D-1)",
-        title: "최종 리마인드 및 환경 점검",
-        sub: "대회 전날",
-        items: [
-          "개인별 Kiro IDE 설치 및 AWS 계정 연동 최종 확인",
-          "본 행사 필수 준비물 안내 (개인 노트북, 충전기 등)",
-          "행사 장소 및 집결 시간 재공지",
-          "노쇼(No-show) 방지를 위한 최종 참가 의사 확인",
-        ],
-      },
-    ],
-  },
+  // {
+  //   type: "phases",
+  //   num: "1",
+  //   badge: "대회 7일 전",
+  //   title: "사전 기술 교육",
+  //   sub: "대회 1주일 전 온라인 사전 교육",
+  //   phases: [
+  //     {
+  //       badge: "Phase 1 (D-7)",
+  //       title: "사전 온라인 교육 자료 배포",
+  //       sub: "대회 7일 전",
+  //       items: [
+  //         "AWS Kiro 설치 가이드 및 환경 세팅 매뉴얼 배포",
+  //         "코딩 초보자를 위한 '바이브 코딩' 기본 개념 안내",
+  //         "사전 과제: 'Hello Kiro!' 실행해보기 미션 부여",
+  //         "PDF 가이드북 및 5분 내외의 짧은 튜토리얼 영상 링크 제공",
+  //       ],
+  //     },
+  //     {
+  //       badge: "Phase 2 (D-6 ~ D-1)",
+  //       title: "온라인 기술 질의응답 운영",
+  //       sub: "대회 6일 전 ~ 전날",
+  //       items: [
+  //         "전 참가자 대상 대회 전용 Slack 워크스페이스 초대",
+  //         "강사 및 멘토진이 상주하는 기술 질의 채널(Q&A) 오픈",
+  //         "사전 과제 수행 중 발생하는 각종 설치 에러 실시간 해결",
+  //         "비전공자도 포기하지 않도록 1:1 원격 트러블슈팅 지원",
+  //       ],
+  //     },
+  //     {
+  //       badge: "Phase 3 (D-1)",
+  //       title: "최종 리마인드 및 환경 점검",
+  //       sub: "대회 전날",
+  //       items: [
+  //         "개인별 Kiro IDE 설치 및 AWS 계정 연동 최종 확인",
+  //         "본 행사 필수 준비물 안내 (개인 노트북, 충전기 등)",
+  //         "행사 장소 및 집결 시간 재공지",
+  //         "노쇼(No-show) 방지를 위한 최종 참가 의사 확인",
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     type: "timeline",
-    num: "2",
-    badge: "5/22(금) – 5/23(토)",
-    title: "KIROTHON 예선",
-    sub: "5/22(금) – 5/23(토) · 1박 2일 몰입 개발",
+    num: "1",
+    badge: "6/12(금) – 6/13(토)",
+    title: "예선",
+    sub: "6/12(금) – 6/13(토)",
     days: [
       {
         badge: "DAY 1",
         title: "예선 1일차",
-        sub: "5/22 (금) · 기획 및 AI 협업 개발",
+        sub: "6/12 (금)",
         items: [
           { time: "10:00–10:30", session: "Check-in & Setup", desc: "참가자 등록 및 AWS Kiro IDE 설치/환경 세팅 확인" },
           { time: "10:30–12:30", session: "KIRO Master Class", desc: "[특강] KIRO로 30분 만에 MVP 뽑아내기 실습" },
@@ -78,7 +78,7 @@ const sections: Section[] = [
       {
         badge: "DAY 2",
         title: "예선 2일차",
-        sub: "5/23 (토) · 자동화 배포 및 Kiro Demo Show",
+        sub: "6/13 (토)",
         items: [
           { time: "09:00–13:00", session: "Debugging & Deployment", desc: "KIRO Hooks 자동 테스트 및 오류 수정, 최종 배포" },
           { time: "13:00–16:00", session: "발표 준비 (중식 포함)", desc: "최종 시연 점검 및 데모 피치 자료 준비" },
@@ -88,45 +88,45 @@ const sections: Section[] = [
       },
     ],
   },
-  {
-    type: "bullet",
-    num: "3",
-    badge: "5/24(일)–6/7(일)",
-    title: "프로젝트 고도화",
-    sub: "5/24(일) - 6/7(일)",
-    items: [
-      {
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
-          </svg>
-        ),
-        session: "AI 활용 비법 전수", desc: "AI에게 더 정확한 답변을 끌어내는 방법을 프롬프트 엔지니어가 원격 지도"
-      },
-      {
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-          </svg>
-        ),
-        session: "서비스 퀄리티 향상", desc: "부족했던 화면(UI)을 다듬고 핵심 기능 추가 구현"
-      },
-      {
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
-        ),
-        session: "실전 스펙 완성", desc: "이력서(포트폴리오)에 바로 쓸 수 있는 완벽한 서비스로 발전"
-      },
-    ],
-  },
+  // {
+  //   type: "bullet",
+  //   num: "3",
+  //   badge: "5/24(일)–6/7(일)",
+  //   title: "프로젝트 고도화",
+  //   sub: "5/24(일) - 6/7(일)",
+  //   items: [
+  //     {
+  //       icon: (
+  //         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  //           <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
+  //         </svg>
+  //       ),
+  //       session: "AI 활용 비법 전수", desc: "AI에게 더 정확한 답변을 끌어내는 방법을 프롬프트 엔지니어가 원격 지도"
+  //     },
+  //     {
+  //       icon: (
+  //         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  //           <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+  //         </svg>
+  //       ),
+  //       session: "서비스 퀄리티 향상", desc: "부족했던 화면(UI)을 다듬고 핵심 기능 추가 구현"
+  //     },
+  //     {
+  //       icon: (
+  //         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  //           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+  //         </svg>
+  //       ),
+  //       session: "실전 스펙 완성", desc: "이력서(포트폴리오)에 바로 쓸 수 있는 완벽한 서비스로 발전"
+  //     },
+  //   ],
+  // },
   {
     type: "timeline-single",
-    num: "4",
-    badge: "6/10 (수)",
+    num: "2",
+    badge: "6/19 (금)",
     title: "본선",
-    sub: "6/10 (수)",
+    sub: "6/19 (금)",
     items: [
       { time: "13:30–14:00", session: "행사장 집결", desc: "본선 발표 자료/화면 최종 점검" },
       { time: "14:00–15:00", session: "팀별 최종 발표", desc: "10분 발표 + 5분 심사위원 질문" },
@@ -155,7 +155,7 @@ export default function SchedulePage() {
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <h1 className="flex justify-center text-4xl font-extrabold text-black mb-2">주요 일정</h1>
-        <p className="flex justify-center text-[#555] text-xl mb-12">KIROTHON 주요 일정 안내</p>
+        <p className="flex justify-center text-[#555] text-xl mb-12">경진대회 주요 일정 안내</p>
 
         <div className="flex gap-6 items-start">
           {/* 왼쪽: 일정 목록 */}

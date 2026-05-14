@@ -1,10 +1,9 @@
 const infoRows = [
-  { label: "대 회 명", value: "KIROTHON — 원주 대학 연합 AI·클라우드 경진대회" },
-  { label: "대회 기간", value: "2025년 5월 22일(금) – 6월 10일(수)" },
-  { label: "예    선", value: "5월 22일(금) – 23일(토) · 1박 2일 몰입 개발" },
-  { label: "본    선", value: "6월 10일(수) · 최종 발표 및 시상" },
-  { label: "참가 자격", value: "원주 소재 대학 재학생 (전공 무관, 개인 참가 가능)" },
-  { label: "개발 도구", value: "AWS Kiro (AI 자동 개발 IDE) 필수 사용" },
+  { label: "대 회 명", value: "2026년 동북권 개발자 대상 오픈소스 아이디어 경진대회" },
+  { label: "예    선", value: "2026년 6월 12일(금) – 13일(토)" },
+  { label: "본    선", value: "2026년 6월 19일(금)" },
+  { label: "참가 대상", value: "동북권(대구·경북·강원) 재직자 및 대학생" },
+  { label: "개발 도구", value: "AWS Kiro (AI 자동 개발 IDE)" },
 ];
 
 export default function Overview() {

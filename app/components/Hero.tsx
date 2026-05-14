@@ -7,10 +7,12 @@ export default function Hero() {
       <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-amber-500/10 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
-          원주 대학 연합<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-400">
-            AI·클라우드 경진대회
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.15] mb-6 tracking-tight">
+          <span className="block text-white text-2xl md:text-3xl font-semibold tracking-widest mb-3">
+            2026 동북권 개발자 대상
+          </span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-300 to-amber-400">
+            오픈소스 아이디어<br />경진대회
           </span>
         </h1>
         <p className="text-[#777A83] text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
