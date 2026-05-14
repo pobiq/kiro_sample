@@ -42,9 +42,11 @@ function FieldError({ msg }: { msg?: string }) {
 }
 
 export default function ApplyForm() {
+  const [participantType, setParticipantType] = useState<"student" | "worker">("student");
+
   const [form, setForm] = useState({
     name: "",
-    university: "",
+    organization: "",
     department: "",
     studentId: "",
     grade: "",
@@ -67,12 +69,12 @@ export default function ApplyForm() {
   const [selectedLanguages, setSelectedLanguages] = useState<number[]>([]);
   const [langCustomText, setLangCustomText] = useState("");
 
-  const [hackathonExp, setHackathonExp] = useState<boolean | null>(null);
+  const [hackathonExp, setHackathonExp] = useState<boolean | null>(false);
   const [hackathonName, setHackathonName] = useState("");
-  const [awardExp, setAwardExp] = useState<boolean | null>(null);
+  const [awardExp, setAwardExp] = useState<boolean | null>(false);
   const [awardCompetition, setAwardCompetition] = useState("");
   const [awardName, setAwardName] = useState("");
-  const [devExp, setDevExp] = useState<boolean | null>(null);
+  const [devExp, setDevExp] = useState<boolean | null>(false);
 
   const [tools, setTools] = useState("");
   const [devExpDetail, setDevExpDetail] = useState("");
@@ -145,15 +147,13 @@ export default function ApplyForm() {
     else if (name.length < 2) e.name = "성명은 2자 이상 입력해주세요.";
     else if (!/^[가-힣a-zA-Z\s]+$/.test(name)) e.name = "성명은 한글 또는 영문만 입력 가능합니다.";
 
-    if (!form.university.trim()) e.university = "소속대학을 입력해주세요.";
-    else if (form.university.trim().length < 2) e.university = "소속대학은 2자 이상 입력해주세요.";
+    if (!form.organization.trim()) e.organization = participantType === "student" ? "소속 대학을 입력해주세요." : "소속 회사를 입력해주세요.";
+    else if (form.organization.trim().length < 2) e.organization = "2자 이상 입력해주세요.";
 
-    if (!form.department.trim()) e.department = "소속학과를 입력해주세요.";
-    else if (form.department.trim().length < 2) e.department = "소속학과는 2자 이상 입력해주세요.";
+    if (!form.department.trim()) e.department = participantType === "student" ? "소속 학과를 입력해주세요." : "소속 부서를 입력해주세요.";
+    else if (form.department.trim().length < 2) e.department = "2자 이상 입력해주세요.";
 
-    const sid = form.studentId.trim();
-    if (!sid) e.studentId = "학번을 입력해주세요.";
-    else if (!/^\d{5,}$/.test(sid)) e.studentId = "학번은 숫자 5자리 이상 입력해주세요.";
+    if (participantType === "student" && !form.studentId.trim()) e.studentId = "학번을 입력해주세요.";
 
     // 연락처 — 중간·끝자리 검사
     if (!phonePart2 || !phonePart3) {
@@ -174,7 +174,7 @@ export default function ApplyForm() {
       e.email = "올바른 이메일 형식으로 입력해주세요.";
     }
 
-    if (!form.grade) e.grade = "학년을 선택해주세요.";
+    if (participantType === "student" && !form.grade) e.grade = "학년을 선택해주세요.";
     if (!form.gender) e.gender = "성별을 선택해주세요.";
     if (selectedFields.length === 0) e.fields = "신청 분야를 하나 이상 선택해주세요.";
     if (!privacyAgreed) e.privacy = "개인정보 수집 및 이용에 동의해주세요.";
@@ -223,6 +223,7 @@ export default function ApplyForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          participantType,
           phone,
           email,
           fieldIds: selectedFields,
@@ -295,6 +296,31 @@ export default function ApplyForm() {
               기본 정보 <span className="text-gray-500 text-sm"><span className="text-red-500">*</span>는 필수항목입니다.</span>
             </h2>
             <div className="space-y-4">
+
+              {/* 참가자 구분 토글 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">참가자 구분<Req /></label>
+                <div className="flex gap-2">
+                  {(["student", "worker"] as const).map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => {
+                        setParticipantType(type);
+                        setForm((p) => ({ ...p, studentId: "", grade: "" }));
+                      }}
+                      className={`px-5 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                        participantType === type
+                          ? "bg-purple-600 text-white border-purple-600"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-purple-400"
+                      }`}
+                    >
+                      {type === "student" ? "학생" : "직장인"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">성명<Req /></label>
                 <input id="name" type="text" placeholder="홍길동" value={form.name} maxLength={60}
@@ -303,25 +329,35 @@ export default function ApplyForm() {
               </div>
 
               <div>
-                <label htmlFor="university" className="block text-sm font-medium text-gray-700 mb-1">소속대학<Req /></label>
-                <input id="university" type="text" placeholder="OO대학교" value={form.university} maxLength={100}
-                  onChange={(e) => setField("university", e.target.value)} className={ic("university")} />
-                <FieldError msg={errors.university} />
+                <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-1">
+                  {participantType === "student" ? "소속 대학" : "소속 회사"}<Req />
+                </label>
+                <input id="organization" type="text"
+                  placeholder={participantType === "student" ? "OO대학교" : "OO회사"}
+                  value={form.organization} maxLength={100}
+                  onChange={(e) => setField("organization", e.target.value)} className={ic("organization")} />
+                <FieldError msg={errors.organization} />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className={`grid gap-4 ${participantType === "student" ? "grid-cols-2" : "grid-cols-1"}`}>
                 <div>
-                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">소속학과<Req /></label>
-                  <input id="department" type="text" placeholder="컴퓨터공학과" value={form.department} maxLength={100}
+                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">
+                    {participantType === "student" ? "소속 학과" : "소속 부서"}<Req />
+                  </label>
+                  <input id="department" type="text"
+                    placeholder={participantType === "student" ? "컴퓨터공학과" : "개발팀"}
+                    value={form.department} maxLength={100}
                     onChange={(e) => setField("department", e.target.value)} className={ic("department")} />
                   <FieldError msg={errors.department} />
                 </div>
-                <div>
-                  <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">학번<Req /></label>
-                  <input id="studentId" type="text" placeholder="2024000000" value={form.studentId} maxLength={50}
-                    onChange={(e) => setField("studentId", e.target.value)} className={ic("studentId")} />
-                  <FieldError msg={errors.studentId} />
-                </div>
+                {participantType === "student" && (
+                  <div>
+                    <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">학번<Req /></label>
+                    <input id="studentId" type="text" placeholder="2024000000" value={form.studentId} maxLength={50}
+                      onChange={(e) => setField("studentId", e.target.value)} className={ic("studentId")} />
+                    <FieldError msg={errors.studentId} />
+                  </div>
+                )}
               </div>
 
               {/* 연락처 + 이메일 — 좌우 배치 */}
@@ -386,6 +422,7 @@ export default function ApplyForm() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
+                {participantType === "student" && (
                 <div>
                   <label htmlFor="grade" className="block text-sm font-medium text-gray-700 mb-1">학년<Req /></label>
                   <select id="grade" value={form.grade}
@@ -405,6 +442,7 @@ export default function ApplyForm() {
                   </select>
                   <FieldError msg={errors.grade} />
                 </div>
+                )}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">성별<Req /></label>
                   <div id="gender" className="flex gap-6 mt-2.5">

@@ -4,6 +4,7 @@ import { encrypt, decrypt } from "@/lib/crypto";
 
 const VALID_GRADES = ["1학년", "2학년", "3학년", "4학년", "대학원생"];
 const VALID_GENDERS = ["남", "여"];
+const VALID_PARTICIPANT_TYPES = ["student", "worker"];
 
 /**
  * 요청 바디 서버 사이드 유효성 검사
@@ -18,16 +19,17 @@ function validateBody(body: Record<string, unknown>): Record<string, string> {
   else if (name.length < 2 || name.length > 60) e.name = "성명은 2~60자로 입력해주세요.";
   else if (!/^[가-힣a-zA-Z\s]+$/.test(name)) e.name = "성명은 한글 또는 영문만 입력 가능합니다.";
 
-  const university = String(body.university ?? "").trim();
-  if (!university || university.length < 2 || university.length > 100)
-    e.university = "소속대학을 올바르게 입력해주세요.";
+  const participantType = String(body.participantType ?? "student");
+  if (!VALID_PARTICIPANT_TYPES.includes(participantType))
+    e.participantType = "참가자 구분이 올바르지 않습니다.";
+
+  const organization = String(body.organization ?? "").trim();
+  if (!organization || organization.length < 2 || organization.length > 100)
+    e.organization = participantType === "worker" ? "소속 회사를 올바르게 입력해주세요." : "소속 대학을 올바르게 입력해주세요.";
 
   const department = String(body.department ?? "").trim();
   if (!department || department.length < 2 || department.length > 100)
-    e.department = "소속학과를 올바르게 입력해주세요.";
-
-  const studentId = String(body.studentId ?? "").trim();
-  if (!studentId) e.studentId = "학번을 입력해주세요.";
+    e.department = participantType === "worker" ? "소속 부서를 올바르게 입력해주세요." : "소속 학과를 올바르게 입력해주세요.";
 
   const phone = String(body.phone ?? "").trim();
   if (!phone) e.phone = "연락처를 입력해주세요.";
@@ -40,7 +42,8 @@ function validateBody(body: Record<string, unknown>): Record<string, string> {
     e.email = "올바른 이메일 형식으로 입력해주세요.";
 
   const grade = String(body.grade ?? "");
-  if (!VALID_GRADES.includes(grade)) e.grade = "학년을 선택해주세요.";
+  if (participantType === "student" && !VALID_GRADES.includes(grade))
+    e.grade = "학년을 선택해주세요.";
 
   const gender = String(body.gender ?? "");
   if (!VALID_GENDERS.includes(gender)) e.gender = "성별을 선택해주세요.";
@@ -66,7 +69,8 @@ export async function POST(req: Request) {
     }
 
     const {
-      name, university, department, studentId,
+      participantType,
+      name, organization, department, studentId,
       phone, email, grade, gender,
       fieldIds, customFields,
       languageIds, customLanguages,
@@ -78,13 +82,14 @@ export async function POST(req: Request) {
 
     const participant = await prisma.participant.create({
       data: {
+        participantType,
         name: encrypt(name.trim()),
-        studentId: encrypt(studentId.trim()),
+        studentId: studentId?.trim() ? encrypt(studentId.trim()) : null,
         phone: encrypt(phone.trim()),
         email: encrypt(email.trim()),
-        university: university.trim(),
+        organization: organization.trim(),
         department: department.trim(),
-        grade,
+        grade: grade || null,
         gender,
         hackathonExperience: hackathonExperience ?? null,
         hackathonName: hackathonName || null,
