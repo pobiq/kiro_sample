@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "오픈소스 아이디어 경진대회",
+  title: "경진대회",
   description: "동북권 개발자 대상",
 };
 
